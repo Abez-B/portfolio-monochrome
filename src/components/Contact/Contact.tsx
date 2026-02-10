@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
               <p className="text-white dark:text-black text-xl font-semibold">
                 Discord:{' '}
                 <a
-                  href="https://discord.com/users/.abhrams"
+                  href="https://discord.com/users/850035433030680576"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300"
