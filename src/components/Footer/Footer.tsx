@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         </p>
         <div className="flex justify-center space-x-6">
           <a
-            href="https://github.com/abhrams12"
+            href="https://github.com/Abez-B"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300"

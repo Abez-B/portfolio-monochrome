@@ -24,15 +24,26 @@ const Contact: React.FC = () => {
 
           <div className="mt-12">
             <p className="text-white dark:text-gray-700 text-lg mb-4">Or connect with me:</p>
-            <p className="text-white dark:text-black text-xl font-semibold mb-4">
-              Email:{' '}
-              <a
-                href="mailto:bharathjp02@gmail.com"
-                className="text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300"
-              >
-                bharathjp02@gmail.com
-              </a>
-            </p>
+            <div className="space-y-2 mb-4">
+              <p className="text-white dark:text-black text-xl font-semibold">
+                Email:{' '}
+                <a
+                  href="mailto:bharathjp02@gmail.com"
+                  className="text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300"
+                >
+                  bharathjp02@gmail.com
+                </a>
+              </p>
+              <p className="text-white dark:text-black text-lg">
+                College:{' '}
+                <a
+                  href="mailto:bharath.p_it27@gcee.ac.in"
+                  className="text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300"
+                >
+                  bharath.p_it27@gcee.ac.in
+                </a>
+              </p>
+            </div>
             <a
               href="https://wa.me/916379478168"
               target="_blank"
