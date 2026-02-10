@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -6,52 +7,36 @@ const Contact: React.FC = () => {
   const [isSent, setIsSent] = useState(false);
   const [error, setError] = useState('');
 
-  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
     setIsSending(true);
 
     if (form.current) {
-      const formData = new FormData(form.current);
-
-      // Create request body
-      const data = {
-        name: formData.get('name') as string,
-        email: formData.get('email') as string,
-        message: formData.get('message') as string,
-      };
-
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
+      // Simple EmailJS - just sends notification email to you
+      emailjs
+        .sendForm(
+          'service_qozywht',
+          'template_nyhlx5o',
+          form.current,
+          '4SMdd6lURw746pb4x'
+        )
+        .then(
+          () => {
+            console.log('✅ Email sent successfully');
+            setIsSending(false);
+            setIsSent(true);
+            if (form.current) {
+              form.current.reset();
+            }
+            setTimeout(() => setIsSent(false), 5000);
           },
-          body: JSON.stringify(data),
-        });
-
-        const result = await response.json();
-
-        if (response.ok && result.success) {
-          console.log('✅ Email sent successfully with auto-reply');
-          setIsSending(false);
-          setIsSent(true);
-
-          // Reset form
-          if (form.current) {
-            form.current.reset();
+          (error) => {
+            console.error('❌ Email failed:', error);
+            setIsSending(false);
+            setError('Failed to send message. Please try again or contact me directly via email.');
           }
-
-          // Reset success message after 5 seconds
-          setTimeout(() => setIsSent(false), 5000);
-        } else {
-          throw new Error(result.error || 'Submission failed');
-        }
-      } catch (err) {
-        console.error('❌ Email failed:', err);
-        setIsSending(false);
-        setError('Failed to send message. Please try again or contact me directly via email.');
-      }
+        );
     }
   };
 
@@ -71,7 +56,7 @@ const Contact: React.FC = () => {
           <div>
             <input
               type="text"
-              name="name"
+              name="user_name"
               placeholder="Your Name"
               className="w-full p-3 rounded-md bg-black dark:bg-white border border-gray-700 text-white dark:text-black placeholder-gray-400 dark:placeholder-gray-700 focus:outline-none focus:border-gray-500 dark:focus:border-gray-700 backdrop-blur-md bg-opacity-70 dark:bg-opacity-70"
               required
@@ -80,7 +65,7 @@ const Contact: React.FC = () => {
           <div>
             <input
               type="email"
-              name="email"
+              name="user_email"
               placeholder="Your Email"
               className="w-full p-3 rounded-md bg-black dark:bg-white border border-gray-700 text-white dark:text-black placeholder-gray-400 dark:placeholder-gray-700 focus:outline-none focus:border-gray-500 dark:focus:border-gray-700 backdrop-blur-md bg-opacity-70 dark:bg-opacity-70"
               required
@@ -96,9 +81,6 @@ const Contact: React.FC = () => {
             ></textarea>
           </div>
 
-          {/* Honeypot for spam protection */}
-          <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
-
           {error && (
             <div className="bg-red-500 text-white p-3 rounded-md text-sm">
               {error}
@@ -107,7 +89,7 @@ const Contact: React.FC = () => {
 
           {isSent && (
             <div className="bg-green-500 text-white p-3 rounded-md text-sm">
-              ✓ Message sent successfully! Check your email for confirmation.
+              ✓ Message sent successfully! I'll get back to you soon.
             </div>
           )}
 
