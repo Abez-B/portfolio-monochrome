@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaGithub, FaCode, FaDatabase, FaLinux, FaJava, FaPython, FaNetworkWired, FaServer } from 'react-icons/fa';
-import { SiJavascript, SiTailwindcss, SiExpress, SiSolidity, SiWeb3Dotjs, SiMongodb, SiBash } from 'react-icons/si';
+import { FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaGithub, FaCode, FaDatabase, FaLinux, FaJava, FaPython, FaNetworkWired, FaServer, FaTerminal } from 'react-icons/fa';
+import { SiJavascript, SiTailwindcss, SiExpress, SiSolidity, SiWeb3Dotjs, SiMongodb } from 'react-icons/si';
 
 interface Skill {
   name: string;
@@ -21,7 +21,7 @@ const Skills: React.FC = () => {
   // Priority #1: Systems & Administration
   const systemsSkills: Skill[] = [
     { name: 'Linux (Arch, Ubuntu)', icon: <FaLinux className="w-8 h-8 text-black dark:text-white" /> },
-    { name: 'Shell Scripting (Bash)', icon: <SiBash className="w-8 h-8 text-black dark:text-white" /> },
+    { name: 'Shell Scripting (Bash)', icon: <FaTerminal className="w-8 h-8 text-black dark:text-white" /> },
     { name: 'System Optimization', icon: <FaServer className="w-8 h-8 text-black dark:text-white" /> },
     { name: 'Server Administration', icon: <FaServer className="w-8 h-8 text-black dark:text-white" /> },
   ];
