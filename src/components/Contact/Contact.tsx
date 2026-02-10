@@ -34,12 +34,12 @@ const Contact: React.FC = () => {
               </a>
             </p>
             <a
-              href="https://www.linkedin.com/in/bharath-kumarjp02"
+              href="https://wa.me/916379478168"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300 text-lg"
             >
-              Connect on LinkedIn
+              💬 Chat on WhatsApp
             </a>
           </div>
         </div>
