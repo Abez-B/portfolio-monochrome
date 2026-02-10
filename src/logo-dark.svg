@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="700" viewBox="0 0 1400 700">
+  <rect width="100%" height="100%" fill="black"/>
+  <style>
+    .logo-text {
+      font-family: 'Burbank Big Condensed Bold', sans-serif;
+      font-weight: 900;
+      font-size: 450px;
+      fill: white;
+    }
+  </style>
+  <text x="100" y="530" class="logo-text">B</text>
+  <text x="380" y="530" class="logo-text">K</text>
+</svg>
