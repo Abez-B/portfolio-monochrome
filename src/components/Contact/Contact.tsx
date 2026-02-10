@@ -16,7 +16,7 @@ const Contact: React.FC = () => {
         <div className="space-y-8">
           {/* Direct Email Button */}
           <a
-            href="mailto:bharathjp02@gmail.com?subject=Portfolio Contact&body=Hi Bharath,%0D%0A%0D%0A"
+            href="mailto:bharath.p_it27@gcee.ac.in?subject=Portfolio Contact&body=Hi Bharath,%0D%0A%0D%0A"
             className="inline-block bg-gray-800 text-white dark:bg-gray-200 dark:text-black border border-gray-700 dark:border-gray-300 px-8 py-4 rounded-md text-lg hover:bg-gray-700 dark:hover:bg-gray-300 transition-colors duration-300 font-semibold"
           >
             📧 Send Me an Email

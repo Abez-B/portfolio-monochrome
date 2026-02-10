@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
- 
+
 import profilePicture from '../../assets/images/profile-picture.jpg';
 import TypingText from './TypingText';
 
 const Hero: React.FC = () => {
-    
+
 
   return (
     <motion.section
@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      
+
       <div className="text-center max-w-4xl mx-auto z-10">
         <motion.img
           src={profilePicture}
@@ -33,27 +33,27 @@ const Hero: React.FC = () => {
           text="An Aspiring Network Engineer"
           className="text-2xl md:text-3xl font-bold leading-tight mb-4"
         />
-        <motion.p 
+        <motion.p
           className="text-white dark:text-gray-700 text-xl md:text-2xl mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.5 }}
         >
-          Passionate about creating innovative and impactful web solutions.
+          Building secure, scalable network infrastructure and maintaining robust Linux systems.
         </motion.p>
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 2 }}
         >
-            <Link
-              to="projects"
-              smooth={true}
-              duration={500}
-              className="inline-block bg-gray-900 text-white dark:bg-gray-100 dark:text-black border border-gray-700 dark:border-gray-300 px-8 py-3 rounded-md text-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors duration-300 cursor-pointer"
-            >
-              View My Work
-            </Link>
+          <Link
+            to="projects"
+            smooth={true}
+            duration={500}
+            className="inline-block bg-gray-900 text-white dark:bg-gray-100 dark:text-black border border-gray-700 dark:border-gray-300 px-8 py-3 rounded-md text-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors duration-300 cursor-pointer"
+          >
+            View My Work
+          </Link>
         </motion.div>
       </div>
     </motion.section>

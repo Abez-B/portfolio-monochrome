@@ -17,19 +17,19 @@ const App: React.FC = () => {
 
   useEffect(() => {
     AOS.init({
-        duration: 1000,
-        once: true,
+      duration: 1000,
+      once: true,
     });
   }, []);
 
   return (
     <div className={`${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'} font-sans`}>
       <Helmet>
-        <title>Bharath's portfolio</title>
-        <meta name="description" content="The personal portfolio of Bharath Kumar, a full-stack developer passionate about creating innovative and impactful web solutions." />
-        <meta name="keywords" content="react, typescript, tailwindcss, nodejs, python, solidity, web3, full-stack, developer, portfolio" />
-        <meta property="og:title" content="Bharath Kumar - Full-Stack Developer" />
-        <meta property="og:description" content="The personal portfolio of Bharath Kumar, a full-stack developer passionate about creating innovative and impactful web solutions." />
+        <title>Bharath Kumar | System & Network Engineer</title>
+        <meta name="description" content="System Administrator and Network Engineer specializing in Linux systems, network monitoring, infrastructure security, and automation." />
+        <meta name="keywords" content="system administrator, network engineer, Linux, Zabbix, network monitoring, cybersecurity, infrastructure, DevOps, system optimization" />
+        <meta property="og:title" content="Bharath Kumar - System & Network Engineer" />
+        <meta property="og:description" content="System Administrator and Network Engineer specializing in Linux systems, network monitoring, infrastructure security, and automation." />
         <meta property="og:type" content="website" />
       </Helmet>
       <Header />
