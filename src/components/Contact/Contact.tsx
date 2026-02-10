@@ -26,12 +26,14 @@ const Contact: React.FC = () => {
             <p className="text-white dark:text-gray-700 text-lg mb-4">Or connect with me:</p>
             <div className="space-y-2 mb-4">
               <p className="text-white dark:text-black text-xl font-semibold">
-                Email:{' '}
+                Discord:{' '}
                 <a
-                  href="mailto:bharathjp02@gmail.com"
+                  href="https://discord.com/users/.abhrams"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300"
                 >
-                  bharathjp02@gmail.com
+                  .abhrams
                 </a>
               </p>
               <p className="text-white dark:text-black text-lg">
