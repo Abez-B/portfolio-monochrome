@@ -90,8 +90,8 @@ const Header: React.FC = () => {
           </li>
           <li>
             <a
-              href="/assets/resume.pdf"
-              download
+              href="/resume.pdf"
+              download="Bharath_Kumar_Resume.pdf"
               className="text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300"
             >
               Download Resume

@@ -31,6 +31,7 @@ const Hero: React.FC = () => {
         />
         <TypingText
           text="An Aspiring Network Engineer"
+          as="h2"
           className="text-2xl md:text-3xl font-bold leading-tight mb-4"
         />
         <motion.p

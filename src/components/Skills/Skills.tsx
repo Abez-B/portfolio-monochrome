@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaGithub, FaCode, FaDatabase, FaLinux, FaJava, FaPython, FaNetworkWired, FaServer, FaTerminal } from 'react-icons/fa';
-import { SiJavascript, SiTailwindcss, SiExpress, SiSolidity, SiWeb3Dotjs, SiMongodb } from 'react-icons/si';
+import { FaNodeJs, FaGitAlt, FaGithub, FaDatabase, FaLinux, FaJava, FaPython, FaNetworkWired, FaServer, FaTerminal } from 'react-icons/fa';
+import { SiExpress, SiMongodb } from 'react-icons/si';
 
 interface Skill {
   name: string;

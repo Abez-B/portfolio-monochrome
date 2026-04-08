@@ -14,15 +14,31 @@ const About: React.FC = () => {
           From <strong>dual-boot Linux configurations to network monitoring systems</strong>, I thrive in hands-on technical environments. Experienced with <strong>Arch Linux, Ubuntu, Zabbix</strong>, and infrastructure optimization techniques.
         </p>
 
+        {/* FOSSGCEE highlight */}
+        <div className="mb-6 border border-gray-700 dark:border-gray-300 rounded-lg p-6 bg-gray-800 dark:bg-gray-100 bg-opacity-60 dark:bg-opacity-60">
+          <h3 className="text-2xl font-semibold mb-3 text-white dark:text-black">🐧 Founder — FOSSGCEE</h3>
+          <p className="text-white dark:text-gray-700 text-lg leading-relaxed">
+            I founded <strong>FOSSGCEE</strong>, the student-led Free and Open Source Software club at Government College of Engineering, Erode. The club fosters an open-source culture through workshops, Linux install fests, and collaborative contributions to real-world projects.{' '}
+            <a
+              href="https://fossgcee.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-gray-300 dark:text-gray-600 hover:text-white dark:hover:text-black transition-colors duration-300"
+            >
+              fossgcee.vercel.app →
+            </a>
+          </p>
+        </div>
+
         <div className="mb-6">
-          <h3 className="text-2xl font-semibold mb-3 text-white dark:text-black">Systems & Network Focus</h3>
+          <h3 className="text-2xl font-semibold mb-3 text-white dark:text-black">Systems &amp; Network Focus</h3>
           <p className="text-white dark:text-gray-700 text-lg leading-relaxed">
             Building <strong>real-time network monitoring systems</strong>, optimizing Linux servers, and implementing security best practices. I believe robust infrastructure is the foundation of reliable technology solutions.
           </p>
         </div>
 
         <p className="text-white dark:text-gray-700 text-lg leading-relaxed font-medium">
-          <strong>My goal:</strong> Design and maintain secure, efficient network infrastructure that powers tomorrow's technology.
+          <strong>My goal:</strong> Design and maintain secure, efficient network infrastructure that powers tomorrow&apos;s technology.
         </p>
       </div>
     </section>

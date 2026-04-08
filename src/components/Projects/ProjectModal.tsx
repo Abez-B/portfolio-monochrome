@@ -28,7 +28,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
           onClick={onClose}
         >
           <motion.div
-            className="bg-gray-900 dark:bg-gray-100 text-white dark:text-black rounded-lg p-8 max-w-2xl w-full backdrop-blur-md bg-opacity-70 dark:bg-opacity-70"
+            className="relative bg-gray-900 dark:bg-gray-100 text-white dark:text-black rounded-lg p-8 max-w-2xl w-full backdrop-blur-md bg-opacity-70 dark:bg-opacity-70"
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}

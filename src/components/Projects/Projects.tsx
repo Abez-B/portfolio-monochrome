@@ -4,6 +4,9 @@ import ProjectModal from './ProjectModal';
 
 import gradeNotifierThumbnail from '../../assets/images/grade-notifier-thumbnail.png';
 import hungerblockThumbnail from '../../assets/images/hungerblock-thumbnail.png';
+import linuxHealthMonitorThumbnail from '../../assets/images/linux-health-monitor-thumbnail.png';
+import aiCodeEvalThumbnail from '../../assets/images/ai-code-eval-thumbnail.png';
+import fossgceeThumbnail from '../../assets/images/fossgcee-thumbnail.png';
 
 interface Project {
   title: string;
@@ -20,43 +23,55 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const projects: Project[] = [
-    // Priority #1: Systems & Infrastructure
+    // Priority #1: Community / Leadership
+    {
+      title: 'FOSSGCEE — Student FOSS Club',
+      description:
+        'Founded and lead FOSSGCEE, the Free and Open Source Software club at Government College of Engineering, Erode. Organising workshops, open-source contribution drives, and Linux install fests to build an open-source culture among students. The club has its own dedicated website at fossgcee.vercel.app.',
+      technologies: ['Open Source', 'Community Building', 'Linux', 'Git', 'Vercel'],
+      thumbnail: fossgceeThumbnail,
+      liveDemo: 'https://fossgcee.vercel.app',
+      githubRepo: '#',
+      category: 'Community',
+    },
+    // Priority #2: Systems & Infrastructure
+    {
+      title: 'Smart Linux System Health Monitor',
+      description:
+        'A native Linux graphical system monitoring application inspired by htop, implemented as a modern Qt-based GUI. Displays real-time CPU per-core usage, RAM consumption, process list, network I/O, and system uptime with live-updating charts — all in a clean, dark dashboard interface.',
+      technologies: ['C++', 'Qt6', 'Linux', 'System Monitoring', 'GUI', 'proc filesystem'],
+      thumbnail: linuxHealthMonitorThumbnail,
+      liveDemo: '#',
+      githubRepo: 'https://github.com/Abez-B/Smart_Linux_System_Health_Monitor',
+      category: 'Systems',
+    },
     {
       title: 'OS & Systems Work',
       description:
         'Hands-on experience with operating systems, including installing Arch Linux & Ubuntu in dual-boot configurations. Familiarity with bootloader and GRUB fixes, and practical knowledge of Linux system optimization techniques.',
       technologies: ['Linux', 'Operating Systems', 'System Optimization', 'Arch Linux', 'Ubuntu'],
-      thumbnail: 'https://via.placeholder.com/300x200?text=OS+Systems',
+      thumbnail: linuxHealthMonitorThumbnail,
       liveDemo: '#',
       githubRepo: '#',
       category: 'Systems',
     },
+    // Priority #3: AI / ML
     {
-      title: 'Grade Notification System',
+      title: 'AI Code Evaluation (SWE-bench Pro)',
       description:
-        'A Tkinter-based desktop application designed to bridge the communication gap between educational institutions and parents. It features login validation, teacher input, automatic Excel sheet updates for marks, and sends detailed SMS notifications to parents via Twilio API, including personalized professor details. The application boasts custom sunflower-themed visuals (backgrounds, buttons, assets) and a refresh button for new student input.',
-      technologies: ['Python', 'Tkinter', 'Twilio API', 'Web Scraping (Beautiful Soup)', 'Excel Automation'],
-      thumbnail: gradeNotifierThumbnail,
+        'Automated AI-powered SWE-bench Pro solution using GitHub Actions to fix OpenLibrary\'s ISBN import logic. Integrates Claude AI to analyse failing tests, generate patches, and verify fixes. Produces 6 compliant JSONL artifacts — logs, metrics, and patches — with enhanced token tracking and cost analysis.',
+      technologies: ['Python', 'Claude AI', 'GitHub Actions', 'SWE-bench', 'JSONL', 'Automated Testing'],
+      thumbnail: aiCodeEvalThumbnail,
       liveDemo: '#',
-      githubRepo: '#',
-      category: 'Desktop Apps',
-    },
-    {
-      title: 'DBMS Projects',
-      description:
-        'Designed and implemented various database management system projects, focusing on robust database design with constraints, triggers, stored procedures, and User-Defined Functions (UDFs). Gained experience with XML integration in SQL environments.',
-      technologies: ['SQL', 'DBMS', 'Database Design', 'Triggers', 'Stored Procedures', 'XML'],
-      thumbnail: 'https://via.placeholder.com/300x200?text=DBMS+Projects',
-      liveDemo: '#',
-      githubRepo: '#',
-      category: 'Database',
+      githubRepo: 'https://github.com/Abez-B/ai-code-evaluation-openlibrary',
+      category: 'AI/ML',
     },
     {
       title: 'IMDB Sentiment Analysis',
       description:
-        'A machine learning project comparing the performance of Support Vector Machine (SVM) and Backpropagation Neural Network (MLP) models for sentiment analysis on the IMDB dataset. This project highlights the strengths and weaknesses of different classification algorithms in natural language processing tasks.',
+        'A machine learning project comparing the performance of Support Vector Machine (SVM) and Backpropagation Neural Network (MLP) models for sentiment analysis on the IMDB dataset. Highlights the strengths and weaknesses of different classification algorithms in NLP tasks.',
       technologies: ['Python', 'Machine Learning', 'SVM', 'Neural Networks', 'Sentiment Analysis'],
-      thumbnail: 'https://via.placeholder.com/300x200?text=Sentiment+Analysis',
+      thumbnail: 'https://placehold.co/300x200/111827/ffffff?text=Sentiment+Analysis',
       liveDemo: '#',
       githubRepo: '#',
       category: 'AI/ML',
@@ -64,27 +79,50 @@ const Projects: React.FC = () => {
     {
       title: 'AI/ML Algorithm Implementations',
       description:
-        'Implemented multiple fundamental Artificial Intelligence and Machine Learning algorithms from scratch. This includes search algorithms (DFS, BFS, A*, Dijkstra), clustering (K-means), classification (Gaussian Naive Bayes, SVM), regression (Linear & Multiple Regression), and neural networks using PyTorch and Keras. Also explored probabilistic models with the EM Algorithm (pgmpy).',
+        'Implemented multiple fundamental AI and ML algorithms from scratch — search algorithms (DFS, BFS, A*, Dijkstra), clustering (K-means), classification (Gaussian Naive Bayes, SVM), regression (Linear & Multiple), and neural networks using PyTorch and Keras. Also explored probabilistic models with the EM Algorithm (pgmpy).',
       technologies: ['Python', 'Machine Learning', 'Deep Learning', 'PyTorch', 'Keras', 'Algorithms'],
-      thumbnail: 'https://via.placeholder.com/300x200?text=AI/ML+Implementations',
+      thumbnail: 'https://placehold.co/300x200/111827/ffffff?text=AI%2FML+Implementations',
       liveDemo: '#',
       githubRepo: '#',
       category: 'AI/ML',
+    },
+    // Priority #4: Desktop Apps
+    {
+      title: 'Grade Notification System',
+      description:
+        'A Python desktop app for teachers to efficiently track student grades and communicate with parents. Features dynamic subject customisation (1–9 subjects), colour-coded performance views, and a robust SMS system for sending individual or bulk grade updates via the Twilio API. Built with Tkinter and SQLite for reliability.',
+      technologies: ['Python', 'Tkinter', 'SQLite', 'Twilio API', 'Excel Automation'],
+      thumbnail: gradeNotifierThumbnail,
+      liveDemo: '#',
+      githubRepo: 'https://github.com/Abez-B/Grade_Notifier',
+      category: 'Desktop Apps',
     },
     {
       title: 'Deepfake AI Exploration',
       description:
-        'A Tkinter-based project exploring the integration of Deepfake AI technologies. This project delves into the practical application and implications of deepfake generation.',
+        'A Tkinter-based project exploring the integration of Deepfake AI technologies, delving into the practical application and ethical implications of deepfake generation.',
       technologies: ['Python', 'Tkinter', 'Deepfake AI'],
-      thumbnail: 'https://via.placeholder.com/300x200?text=Deepfake+AI',
+      thumbnail: 'https://placehold.co/300x200/111827/ffffff?text=Deepfake+AI',
       liveDemo: '#',
       githubRepo: '#',
       category: 'AI/ML',
     },
+    // Priority #5: Database
+    {
+      title: 'DBMS Projects',
+      description:
+        'Designed and implemented various database management system projects, focusing on robust database design with constraints, triggers, stored procedures, and User-Defined Functions (UDFs). Gained experience with XML integration in SQL environments.',
+      technologies: ['SQL', 'DBMS', 'Database Design', 'Triggers', 'Stored Procedures', 'XML'],
+      thumbnail: 'https://placehold.co/300x200/111827/ffffff?text=DBMS+Projects',
+      liveDemo: '#',
+      githubRepo: '#',
+      category: 'Database',
+    },
+    // Priority #6: Blockchain
     {
       title: 'HungerBlock',
       description:
-        'A decentralized application (DApp) built on the Ethereum blockchain that aims to reduce food waste and combat hunger. HungerBlock connects restaurants, event organizers, and individuals with surplus food to local charities and food banks. Using smart contracts, the platform ensures transparent, secure, and efficient food distribution, creating a verifiable chain of custody from donor to recipient.',
+        'A decentralised application (DApp) built on the Ethereum blockchain that aims to reduce food waste and combat hunger. Connects restaurants, event organisers, and individuals with surplus food to local charities. Smart contracts ensure transparent, secure, and efficient food distribution with a verifiable chain of custody from donor to recipient.',
       technologies: ['Solidity', 'Hardhat', 'Ethers.js', 'React', 'Web3.js', 'Tailwind CSS'],
       thumbnail: hungerblockThumbnail,
       liveDemo: '#',
@@ -105,17 +143,22 @@ const Projects: React.FC = () => {
     setSelectedProject(null);
   };
 
+  const categories = ['All', 'Community', 'Systems', 'AI/ML', 'Desktop Apps', 'Database', 'Blockchain'];
+
   return (
     <section id="projects" className="bg-black text-white dark:bg-white dark:text-black py-16 px-4" data-aos="fade-up">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12">My Projects</h2>
         <div className="flex justify-center space-x-4 mb-8 flex-wrap gap-2">
-          <button onClick={() => setFilter('All')} className={`text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300 ${filter === 'All' ? 'border-b-2 border-gray-400 dark:border-gray-900' : ''}`}>All</button>
-          <button onClick={() => setFilter('Systems')} className={`text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300 ${filter === 'Systems' ? 'border-b-2 border-gray-400 dark:border-gray-900' : ''}`}>Systems</button>
-          <button onClick={() => setFilter('Database')} className={`text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300 ${filter === 'Database' ? 'border-b-2 border-gray-400 dark:border-gray-900' : ''}`}>Database</button>
-          <button onClick={() => setFilter('AI/ML')} className={`text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300 ${filter === 'AI/ML' ? 'border-b-2 border-gray-400 dark:border-gray-900' : ''}`}>AI/ML</button>
-          <button onClick={() => setFilter('Desktop Apps')} className={`text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300 ${filter === 'Desktop Apps' ? 'border-b-2 border-gray-400 dark:border-gray-900' : ''}`}>Desktop Apps</button>
-          <button onClick={() => setFilter('Blockchain')} className={`text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300 ${filter === 'Blockchain' ? 'border-b-2 border-gray-400 dark:border-gray-900' : ''}`}>Blockchain</button>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300 ${filter === cat ? 'border-b-2 border-gray-400 dark:border-gray-900' : ''}`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
         <div className="grid md:grid-cols-2 gap-8">
           {filteredProjects.map((project, index) => (
@@ -131,6 +174,3 @@ const Projects: React.FC = () => {
 };
 
 export default Projects;
-
-
-

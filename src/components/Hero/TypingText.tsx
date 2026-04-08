@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 interface TypingTextProps {
   text: string;
   className?: string;
+  as?: 'h1' | 'h2' | 'h3' | 'p';
 }
 
-const TypingText: React.FC<TypingTextProps> = ({ text, className }) => {
+const TypingText: React.FC<TypingTextProps> = ({ text, className, as = 'h1' }) => {
   const textVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -25,8 +26,10 @@ const TypingText: React.FC<TypingTextProps> = ({ text, className }) => {
     },
   };
 
+  const MotionTag = motion[as] as typeof motion.h1;
+
   return (
-    <motion.h1
+    <MotionTag
       className={className}
       variants={textVariants}
       initial="hidden"
@@ -37,7 +40,7 @@ const TypingText: React.FC<TypingTextProps> = ({ text, className }) => {
           {char}
         </motion.span>
       ))}
-    </motion.h1>
+    </MotionTag>
   );
 };
 
