@@ -8,8 +8,12 @@ interface ExperienceItem {
 }
 
 const experienceData: ExperienceItem[] = [
-  // No specific work experience provided, so keeping this empty or removing if not needed.
-  // If you have any relevant internships or part-time roles, please provide them.
+  {
+    date: 'Dec 2023 - Present',
+    title: 'Founder & Lead',
+    company: 'FOSSGCEE (Free & Open Source Software Club)',
+    description: 'Founded and managing the official FOSS club of GCE Erode. Leading a team of students to promote open-source culture through workshops, projects, and community building.'
+  }
 ];
 
 const educationData = [
