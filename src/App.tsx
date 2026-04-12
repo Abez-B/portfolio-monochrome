@@ -66,37 +66,49 @@ const App: React.FC = () => {
       </main>
       <Footer />
 
-      {/* Mobile Menu Overlay - Moved to App root with extremely high z-index */}
+      {/* Mobile Menu Overlay - Brute Force Visibility Fix */}
       <div
-        className={`fixed inset-0 bg-white dark:bg-black z-[70] flex flex-col items-center justify-center transition-transform duration-500 ease-in-out ${
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        } md:hidden`}
+        className={`fixed inset-0 bg-white dark:bg-black z-[100] flex flex-col items-center justify-center transition-all duration-300 ${
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
       >
-        <ul className="flex flex-col items-center space-y-8">
-          {navLinks.map((link) => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                smooth={true}
-                duration={500}
-                className={`text-2xl font-black uppercase tracking-[0.2em] text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors`}
-                onClick={closeMobileMenu}
-              >
-                {link.name}
-              </Link>
-            </li>
-          ))}
-          <li>
-            <a
-              href="/resume.pdf"
-              download="Bharath_Kumar_Resume.pdf"
-              className={`text-2xl font-black uppercase tracking-[0.2em] border-2 border-black dark:border-white px-8 py-3 rounded-full text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300`}
-              onClick={closeMobileMenu}
-            >
-              Resume
-            </a>
-          </li>
-        </ul>
+        <div className="flex flex-col items-center space-y-12">
+          <h2 className="text-4xl font-black text-red-600 uppercase tracking-tighter">Menu Content</h2>
+          <a
+            href="#about"
+            onClick={closeMobileMenu}
+            className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
+          >
+            01. About Me
+          </a>
+          <a
+            href="#skills"
+            onClick={closeMobileMenu}
+            className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
+          >
+            02. My Skills
+          </a>
+          <a
+            href="#projects"
+            onClick={closeMobileMenu}
+            className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
+          >
+            03. Projects
+          </a>
+          <a
+            href="#contact"
+            onClick={closeMobileMenu}
+            className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
+          >
+            04. Contact
+          </a>
+          <button
+            onClick={closeMobileMenu}
+            className="mt-8 px-8 py-3 bg-red-600 text-white font-bold rounded-full uppercase"
+          >
+            Close Menu
+          </button>
+        </div>
       </div>
     </div>
   );
