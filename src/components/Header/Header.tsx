@@ -38,12 +38,13 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
       <nav className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center relative z-50">
         {/* Logo */}
         <div className="flex items-center">
-          <Link to="hero" smooth={true} duration={500} className="cursor-pointer" onClick={closeMobileMenu}>
+          <Link to="hero" smooth={true} duration={500} className="cursor-pointer flex items-center space-x-2" onClick={closeMobileMenu}>
             <img 
               src={theme === 'dark' ? darkLogo : lightLogo} 
               alt="Logo" 
               className="h-8 w-auto transition-transform hover:scale-110" 
             />
+            <span className="text-[10px] font-bold opacity-30">(v3.2)</span>
           </Link>
         </div>
 
