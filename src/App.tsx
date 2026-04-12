@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
@@ -8,7 +8,6 @@ import Skills from './components/Skills/Skills';
 import Experience from './components/Experience/Experience';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
-import { ThemeContext } from './context/ThemeContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
