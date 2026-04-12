@@ -61,7 +61,7 @@ const Skills: React.FC = () => {
               {systemsSkills.map((skill, index) => (
                 <div key={index} className="flex items-center space-x-2 w-full">
                   <SkillIcon>{skill.icon}</SkillIcon>
-                  <span className="text-white dark:text-black text-lg leading-none flex-grow min-w-0">{skill.name}</span>
+                  <span className="text-black dark:text-white text-lg leading-none flex-grow min-w-0">{skill.name}</span>
                 </div>
               ))}
             </div>
@@ -73,7 +73,7 @@ const Skills: React.FC = () => {
               {networkingSkills.map((skill, index) => (
                 <div key={index} className="flex items-center space-x-2 w-full">
                   <SkillIcon>{skill.icon}</SkillIcon>
-                  <span className="text-white dark:text-black text-lg leading-none flex-grow min-w-0">{skill.name}</span>
+                  <span className="text-black dark:text-white text-lg leading-none flex-grow min-w-0">{skill.name}</span>
                 </div>
               ))}
             </div>
@@ -85,7 +85,7 @@ const Skills: React.FC = () => {
               {backendSkills.map((skill, index) => (
                 <div key={index} className="flex items-center space-x-2 w-full">
                   <SkillIcon>{skill.icon}</SkillIcon>
-                  <span className="text-white dark:text-black text-lg leading-none flex-grow min-w-0">{skill.name}</span>
+                  <span className="text-black dark:text-white text-lg leading-none flex-grow min-w-0">{skill.name}</span>
                 </div>
               ))}
             </div>
@@ -97,7 +97,7 @@ const Skills: React.FC = () => {
               {toolsSkills.map((skill, index) => (
                 <div key={index} className="flex items-center space-x-2 w-full">
                   <SkillIcon>{skill.icon}</SkillIcon>
-                  <span className="text-white dark:text-black text-lg leading-none flex-grow min-w-0">{skill.name}</span>
+                  <span className="text-black dark:text-white text-lg leading-none flex-grow min-w-0">{skill.name}</span>
                 </div>
               ))}
             </div>

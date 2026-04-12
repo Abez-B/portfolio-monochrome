@@ -126,7 +126,7 @@ const Header: React.FC = () => {
                 to={link.to}
                 smooth={true}
                 duration={500}
-                className={`text-2xl font-bold uppercase tracking-widest ${textColorClass} ${hoverColorClass} transition-colors`}
+                className={`text-2xl font-black uppercase tracking-[0.2em] text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors`}
                 onClick={closeMobileMenu}
               >
                 {link.name}
@@ -137,7 +137,7 @@ const Header: React.FC = () => {
             <a
               href="/resume.pdf"
               download="Bharath_Kumar_Resume.pdf"
-              className={`text-2xl font-bold uppercase tracking-widest border-2 border-black dark:border-white px-8 py-3 rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300`}
+              className={`text-2xl font-black uppercase tracking-[0.2em] border-2 border-black dark:border-white px-8 py-3 rounded-full text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300`}
               onClick={closeMobileMenu}
             >
               Resume

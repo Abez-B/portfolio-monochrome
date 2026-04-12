@@ -54,7 +54,7 @@ const Contact: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-white dark:text-gray-700 text-lg">
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
             Have a project in mind or just want to say hello? Feel free to reach out!
           </p>
         </div>
@@ -81,24 +81,24 @@ const Contact: React.FC = () => {
               </div>
               
               <div>
-                <p className="text-sm text-gray-400 dark:text-gray-500 uppercase tracking-wider font-semibold mb-1">Discord</p>
+                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-wider font-semibold mb-1">Discord</p>
                 <a
                   href="https://discord.com/users/850035433030680576"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-lg font-medium hover:text-gray-300 dark:hover:text-gray-600 transition-colors"
+                  className="text-lg font-medium hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                 >
                   .abhrams
                 </a>
               </div>
               
               <div>
-                <p className="text-sm text-gray-400 dark:text-gray-500 uppercase tracking-wider font-semibold mb-1">WhatsApp</p>
+                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-wider font-semibold mb-1">WhatsApp</p>
                 <a
                   href="https://wa.me/916379478168"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-lg font-medium hover:text-gray-300 dark:hover:text-gray-600 transition-colors"
+                  className="text-lg font-medium hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                 >
                   +91 63794 78168
                 </a>
@@ -142,7 +142,7 @@ const Contact: React.FC = () => {
                     name="user_email"
                     id="user_email"
                     required
-                    className="w-full bg-gray-900 dark:bg-white border border-gray-600 dark:border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-500 text-white dark:text-black"
+                    className="w-full bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-600 text-black dark:text-white"
                     placeholder="john@example.com"
                   />
                 </div>
