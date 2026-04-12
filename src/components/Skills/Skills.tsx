@@ -51,11 +51,11 @@ const Skills: React.FC = () => {
   ];
 
   return (
-    <section id="skills" className="bg-black text-white dark:bg-white dark:text-black py-16 px-4" data-aos="fade-up">
+    <section id="skills" className="bg-white text-black dark:bg-black dark:text-white py-16 px-4" data-aos="fade-up">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12">My Skills</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
-          <div className="bg-gray-900 dark:bg-gray-100 border border-gray-700 dark:border-gray-300 rounded-lg p-6 backdrop-blur-md bg-opacity-70 dark:bg-opacity-70" data-aos="fade-up" data-aos-delay="100">
+          <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 shadow-md" data-aos="fade-up" data-aos-delay="100">
             <h3 className="text-2xl font-bold mb-6">Systems & Admin</h3>
             <div className="flex flex-wrap gap-4">
               {systemsSkills.map((skill, index) => (
@@ -67,7 +67,7 @@ const Skills: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-gray-900 dark:bg-gray-100 border border-gray-700 dark:border-gray-300 rounded-lg p-6 backdrop-blur-md bg-opacity-70 dark:bg-opacity-70" data-aos="fade-up" data-aos-delay="200">
+          <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 shadow-md" data-aos="fade-up" data-aos-delay="200">
             <h3 className="text-2xl font-bold mb-6">Networking</h3>
             <div className="flex flex-wrap gap-4">
               {networkingSkills.map((skill, index) => (
@@ -79,7 +79,7 @@ const Skills: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-gray-900 dark:bg-gray-100 border border-gray-700 dark:border-gray-300 rounded-lg p-6 backdrop-blur-md bg-opacity-70 dark:bg-opacity-70" data-aos="fade-up" data-aos-delay="300">
+          <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 shadow-md" data-aos="fade-up" data-aos-delay="300">
             <h3 className="text-2xl font-bold mb-6">Backend & Scripting</h3>
             <div className="flex flex-wrap gap-4">
               {backendSkills.map((skill, index) => (
@@ -91,7 +91,7 @@ const Skills: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-gray-900 dark:bg-gray-100 border border-gray-700 dark:border-gray-300 rounded-lg p-6 backdrop-blur-md bg-opacity-70 dark:bg-opacity-70" data-aos="fade-up" data-aos-delay="400">
+          <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 shadow-md" data-aos="fade-up" data-aos-delay="400">
             <h3 className="text-2xl font-bold mb-6">Tools & DevOps</h3>
             <div className="flex flex-wrap gap-4">
               {toolsSkills.map((skill, index) => (

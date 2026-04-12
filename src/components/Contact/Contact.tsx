@@ -48,7 +48,7 @@ const Contact: React.FC = () => {
   return (
     <section
       id="contact"
-      className="bg-gray-900 text-white dark:bg-white dark:text-black py-16 px-4"
+      className="bg-gray-50 text-black dark:bg-black dark:text-white py-16 px-4"
       data-aos="fade-up"
     >
       <div className="max-w-4xl mx-auto">
@@ -59,9 +59,9 @@ const Contact: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
           {/* Contact Details Side */}
-          <div className="space-y-8 bg-gray-800 dark:bg-gray-100 p-8 rounded-lg border border-gray-700 dark:border-gray-300">
+          <div className="space-y-8 bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm">
             <div>
               <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
               <p className="text-gray-400 dark:text-gray-600 mb-6">
@@ -107,7 +107,7 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Email Form Side */}
-          <div className="bg-gray-800 dark:bg-gray-100 p-8 rounded-lg border border-gray-700 dark:border-gray-300">
+          <div className="bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm">
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
             
             {submitStatus === 'success' ? (
@@ -154,7 +154,7 @@ const Contact: React.FC = () => {
                     id="message"
                     required
                     rows={4}
-                    className="w-full bg-gray-900 dark:bg-white border border-gray-600 dark:border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-500 text-white dark:text-black resize-none"
+                    className="w-full bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-600 text-black dark:text-white transition-colors"
                     placeholder="Hello Bharath, I would like to talk about..."
                   ></textarea>
                 </div>

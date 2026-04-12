@@ -23,7 +23,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className={`${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'} font-sans`}>
+    <div className="bg-white text-black dark:bg-black dark:text-white font-sans transition-colors duration-300 min-h-screen">
       <Helmet>
         <title>Bharath Kumar | System & Network Engineer</title>
         <meta name="description" content="System Administrator and Network Engineer specializing in Linux systems, network monitoring, infrastructure security, and automation." />

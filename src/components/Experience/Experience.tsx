@@ -27,7 +27,7 @@ const educationData = [
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="bg-gray-900 text-white dark:bg-white dark:text-black py-16 px-4" data-aos="fade-up">
+    <section id="experience" className="bg-gray-50 text-black dark:bg-black dark:text-white py-16 px-4" data-aos="fade-up">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12">Experience &amp; Education</h2>
         <div className={`grid gap-16 ${experienceData.length > 0 ? 'md:grid-cols-2' : 'md:grid-cols-1 max-w-xl mx-auto'}`}>

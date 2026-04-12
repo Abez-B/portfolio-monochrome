@@ -28,7 +28,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
           onClick={onClose}
         >
           <motion.div
-            className="relative bg-gray-900 dark:bg-gray-100 text-white dark:text-black rounded-lg p-8 max-w-2xl w-full backdrop-blur-md bg-opacity-70 dark:bg-opacity-70"
+            className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-black dark:text-white rounded-lg p-8 max-w-2xl w-full shadow-2xl"
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
@@ -41,17 +41,21 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
               <h4 className="text-md font-semibold mb-2">Technologies:</h4>
               <ul className="flex flex-wrap gap-2">
                 {project.technologies.map((tech, index) => (
-                  <li key={index} className="bg-gray-900 dark:bg-gray-200 text-white dark:text-gray-800 text-xs px-3 py-1 rounded-full">
+                  <li key={index} className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs px-3 py-1 rounded-full">
                     {tech}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="flex justify-between">
-              <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="text-white dark:text-gray-700 border border-gray-700 dark:border-gray-300 px-4 py-2 rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors duration-300">Live Demo</a>
-              <a href={project.githubRepo} target="_blank" rel="noopener noreferrer" className="text-white dark:text-gray-700 border border-gray-700 dark:border-gray-300 px-4 py-2 rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors duration-300">GitHub Repo</a>
+            <div className="flex justify-between gap-4">
+              <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="flex-1 text-center bg-black text-white dark:bg-white dark:text-black px-6 py-2 rounded-md hover:opacity-90 transition-opacity text-sm font-bold">Live Demo</a>
+              <a href={project.githubRepo} target="_blank" rel="noopener noreferrer" className="flex-1 text-center border border-gray-300 dark:border-gray-700 text-black dark:text-white px-6 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-sm font-bold">GitHub</a>
             </div>
-            <button onClick={onClose} className="absolute top-4 right-4 text-white dark:text-black">Close</button>
+            <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-black dark:hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </motion.div>
         </motion.div>
       )}

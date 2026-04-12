@@ -146,7 +146,7 @@ const Projects: React.FC = () => {
   const categories = ['All', 'Community', 'Systems', 'AI/ML', 'Desktop Apps', 'Database', 'Blockchain'];
 
   return (
-    <section id="projects" className="bg-black text-white dark:bg-white dark:text-black py-16 px-4" data-aos="fade-up">
+    <section id="projects" className="bg-white text-black dark:bg-black dark:text-white py-16 px-4" data-aos="fade-up">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12">My Projects</h2>
         <div className="flex justify-center space-x-4 mb-8 flex-wrap gap-2">
@@ -154,7 +154,11 @@ const Projects: React.FC = () => {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`text-white dark:text-gray-700 hover:text-gray-400 dark:hover:text-gray-900 transition-colors duration-300 ${filter === cat ? 'border-b-2 border-gray-400 dark:border-gray-900' : ''}`}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                filter === cat 
+                  ? 'bg-black text-white dark:bg-white dark:text-black' 
+                  : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
+              }`}
             >
               {cat}
             </button>
