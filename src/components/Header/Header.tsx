@@ -47,73 +47,75 @@ const Header: React.FC = () => {
   const hoverColorClass = 'hover:text-black dark:hover:text-gray-300';
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${headerBgClass}`}>
-      <nav className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center relative z-50">
-        {/* Logo */}
-        <div className="flex items-center">
-          <Link to="hero" smooth={true} duration={500} className="cursor-pointer" onClick={closeMobileMenu}>
-            <img 
-              src={theme === 'dark' ? darkLogo : lightLogo} 
-              alt="Logo" 
-              className="h-8 w-auto transition-transform hover:scale-110" 
-            />
-          </Link>
-        </div>
+    <>
+      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${headerBgClass}`}>
+        <nav className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center relative z-50">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link to="hero" smooth={true} duration={500} className="cursor-pointer" onClick={closeMobileMenu}>
+              <img 
+                src={theme === 'dark' ? darkLogo : lightLogo} 
+                alt="Logo" 
+                className="h-8 w-auto transition-transform hover:scale-110" 
+              />
+            </Link>
+          </div>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 items-center">
-          {navLinks.map((link) => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                smooth={true}
-                duration={500}
-                className={`${textColorClass} ${hoverColorClass} transition-colors duration-300 cursor-pointer text-sm font-medium uppercase tracking-wider`}
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex space-x-8 items-center">
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  smooth={true}
+                  duration={500}
+                  className={`${textColorClass} ${hoverColorClass} transition-colors duration-300 cursor-pointer text-sm font-medium uppercase tracking-wider`}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <a
+                href="/resume.pdf"
+                download="Bharath_Kumar_Resume.pdf"
+                className="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-md text-sm font-bold hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 shadow-sm"
               >
-                {link.name}
-              </Link>
+                Resume
+              </a>
             </li>
-          ))}
-          <li>
-            <a
-              href="/resume.pdf"
-              download="Bharath_Kumar_Resume.pdf"
-              className="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-md text-sm font-bold hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 shadow-sm"
-            >
-              Resume
-            </a>
-          </li>
-          <li>
+            <li>
+              <button 
+                onClick={toggleTheme} 
+                className={`${textColorClass} ${hoverColorClass} transition-colors duration-300 p-2`}
+                aria-label="Toggle Theme"
+              >
+                {theme === 'dark' ? <FaSun size={18} /> : <FaMoon size={18} />}
+              </button>
+            </li>
+          </ul>
+
+          {/* Mobile Toggle & Theme (Visible on Mobile) */}
+          <div className="flex items-center space-x-4 md:hidden">
             <button 
               onClick={toggleTheme} 
-              className={`${textColorClass} ${hoverColorClass} transition-colors duration-300 p-2`}
+              className={`${textColorClass} p-2`}
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? <FaSun size={18} /> : <FaMoon size={18} />}
             </button>
-          </li>
-        </ul>
+            <button
+              onClick={toggleMobileMenu}
+              className={`${textColorClass} focus:outline-none p-2`}
+              aria-label="Toggle Menu"
+            >
+              {mobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+          </div>
+        </nav>
+      </header>
 
-        {/* Mobile Toggle & Theme (Visible on Mobile) */}
-        <div className="flex items-center space-x-4 md:hidden">
-          <button 
-            onClick={toggleTheme} 
-            className={`${textColorClass} p-2`}
-            aria-label="Toggle Theme"
-          >
-            {theme === 'dark' ? <FaSun size={18} /> : <FaMoon size={18} />}
-          </button>
-          <button
-            onClick={toggleMobileMenu}
-            className={`${textColorClass} focus:outline-none p-2`}
-            aria-label="Toggle Menu"
-          >
-            {mobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Separate Fixed Element to prevent clipping */}
       <div
         className={`fixed inset-0 bg-white dark:bg-black z-40 flex flex-col items-center justify-center transition-transform duration-500 ease-in-out ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
@@ -145,7 +147,7 @@ const Header: React.FC = () => {
           </li>
         </ul>
       </div>
-    </header>
+    </>
   );
 };
 
