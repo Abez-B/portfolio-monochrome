@@ -11,19 +11,18 @@ import Footer from './components/Footer/Footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-scroll';
+import { useContext } from 'react';
+import { ThemeContext } from './context/ThemeContext';
 
 const App: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
+  const { theme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [mobileMenuOpen]);
-
-  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+  const toggleMobileMenu = () => {
+    // Diagnostic Alert
+    window.alert('Toggle Menu Clicked! New state will be: ' + (!mobileMenuOpen ? 'OPEN' : 'CLOSED'));
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   const navLinks = [
@@ -66,50 +65,53 @@ const App: React.FC = () => {
       </main>
       <Footer />
 
-      {/* Mobile Menu Overlay - Brute Force Visibility Fix */}
-      <div
-        className={`fixed inset-0 bg-white dark:bg-black z-[100] flex flex-col items-center justify-center transition-all duration-300 ${
-          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <div className="flex flex-col items-center space-y-12">
-          <h2 className="text-4xl font-black text-red-600 uppercase tracking-tighter">Menu Content</h2>
-          <a
-            href="#about"
-            onClick={closeMobileMenu}
-            className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
-          >
-            01. About Me
-          </a>
-          <a
-            href="#skills"
-            onClick={closeMobileMenu}
-            className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
-          >
-            02. My Skills
-          </a>
-          <a
-            href="#projects"
-            onClick={closeMobileMenu}
-            className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
-          >
-            03. Projects
-          </a>
-          <a
-            href="#contact"
-            onClick={closeMobileMenu}
-            className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
-          >
-            04. Contact
-          </a>
-          <button
-            onClick={closeMobileMenu}
-            className="mt-8 px-8 py-3 bg-red-600 text-white font-bold rounded-full uppercase"
-          >
-            Close Menu
-          </button>
+      {/* Mobile Menu Overlay - Nuclear Visibility Fix (Diagnostic v3.3) */}
+      {mobileMenuOpen && (
+        <div
+          style={{ 
+            position: 'fixed', 
+            inset: 0, 
+            backgroundColor: theme === 'dark' ? '#000' : '#fff',
+            zIndex: 9999,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <div className="flex flex-col items-center space-y-12 px-4 text-center">
+            <h2 className="text-4xl font-black text-red-600 uppercase tracking-tighter">DIAGNOSTIC v3.3</h2>
+            <p className="text-black dark:text-white font-bold">If you see this, the menu is working!</p>
+            <a
+              href="#about"
+              onClick={closeMobileMenu}
+              className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
+            >
+              01. About Me
+            </a>
+            <a
+              href="#skills"
+              onClick={closeMobileMenu}
+              className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
+            >
+              02. My Skills
+            </a>
+            <a
+              href="#projects"
+              onClick={closeMobileMenu}
+              className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
+            >
+              03. Projects
+            </a>
+            <button
+              onClick={closeMobileMenu}
+              className="mt-8 px-12 py-4 bg-red-600 text-white font-bold rounded-full uppercase text-xl shadow-2xl"
+            >
+              Close Menu
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

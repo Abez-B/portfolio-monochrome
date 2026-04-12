@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
               alt="Logo" 
               className="h-8 w-auto transition-transform hover:scale-110" 
             />
-            <span className="text-[10px] font-bold opacity-30">(v3.2)</span>
+            <span className="text-[10px] font-bold opacity-30">(v3.3)</span>
           </Link>
         </div>
 
@@ -92,7 +92,10 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
             {theme === 'dark' ? <FaSun size={18} /> : <FaMoon size={18} />}
           </button>
           <button
-            onClick={toggleMobileMenu}
+            onClick={() => {
+              window.alert('Header Button Clicked!');
+              toggleMobileMenu();
+            }}
             className={`${textColorClass} focus:outline-none p-2`}
             aria-label="Toggle Menu"
           >
