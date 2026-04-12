@@ -38,14 +38,13 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
       <nav className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center relative z-50">
         {/* Logo */}
         <div className="flex items-center">
-          <Link to="hero" smooth={true} duration={500} className="cursor-pointer flex items-center space-x-2" onClick={closeMobileMenu}>
-            <img 
-              src={theme === 'dark' ? darkLogo : lightLogo} 
-              alt="Logo" 
-              className="h-8 w-auto transition-transform hover:scale-110" 
-            />
-            <span className="text-[10px] font-bold opacity-30">(v3.3)</span>
-          </Link>
+            <Link to="hero" smooth={true} duration={500} className="cursor-pointer" onClick={closeMobileMenu}>
+              <img 
+                src={theme === 'dark' ? darkLogo : lightLogo} 
+                alt="Logo" 
+                className="h-8 w-auto transition-transform hover:scale-110" 
+              />
+            </Link>
         </div>
 
         {/* Desktop Menu */}
@@ -92,10 +91,7 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
             {theme === 'dark' ? <FaSun size={18} /> : <FaMoon size={18} />}
           </button>
           <button
-            onClick={() => {
-              window.alert('Header Button Clicked!');
-              toggleMobileMenu();
-            }}
+            onClick={toggleMobileMenu}
             className={`${textColorClass} focus:outline-none p-2`}
             aria-label="Toggle Menu"
           >

@@ -10,6 +10,7 @@ import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Link } from 'react-scroll';
 import { useContext } from 'react';
 import { ThemeContext } from './context/ThemeContext';
 
@@ -17,11 +18,7 @@ const App: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
   const { theme } = useContext(ThemeContext);
 
-  const toggleMobileMenu = () => {
-    // Diagnostic Alert
-    window.alert('Toggle Menu Clicked! New state will be: ' + (!mobileMenuOpen ? 'OPEN' : 'CLOSED'));
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   const navLinks = [
@@ -64,51 +61,45 @@ const App: React.FC = () => {
       </main>
       <Footer />
 
-      {/* Mobile Menu Overlay - Nuclear Visibility Fix (Diagnostic v3.3) */}
+      {/* Mobile Menu Overlay - Restored Design with Fixed Root Mounting */}
       {mobileMenuOpen && (
         <div
-          style={{ 
-            position: 'fixed', 
-            inset: 0, 
-            backgroundColor: theme === 'dark' ? '#000' : '#fff',
-            zIndex: 9999,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
+          className="fixed inset-0 bg-white dark:bg-black z-[9999] flex flex-col items-center justify-center transition-all duration-300 animate-in fade-in fill-mode-both"
         >
-          <div className="flex flex-col items-center space-y-12 px-4 text-center">
-            <h2 className="text-4xl font-black text-red-600 uppercase tracking-tighter">DIAGNOSTIC v3.3</h2>
-            <p className="text-black dark:text-white font-bold">If you see this, the menu is working!</p>
-            <a
-              href="#about"
-              onClick={closeMobileMenu}
-              className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
-            >
-              01. About Me
-            </a>
-            <a
-              href="#skills"
-              onClick={closeMobileMenu}
-              className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
-            >
-              02. My Skills
-            </a>
-            <a
-              href="#projects"
-              onClick={closeMobileMenu}
-              className="text-3xl font-black text-black dark:text-white uppercase hover:text-blue-600 transition-colors"
-            >
-              03. Projects
-            </a>
-            <button
-              onClick={closeMobileMenu}
-              className="mt-8 px-12 py-4 bg-red-600 text-white font-bold rounded-full uppercase text-xl shadow-2xl"
-            >
-              Close Menu
-            </button>
-          </div>
+          <ul className="flex flex-col items-center space-y-10">
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  smooth={true}
+                  duration={500}
+                  offset={-70}
+                  className="text-3xl font-black uppercase tracking-[0.2em] text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors cursor-pointer"
+                  onClick={closeMobileMenu}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <a
+                href="/resume.pdf"
+                download="Bharath_Kumar_Resume.pdf"
+                className="text-2xl font-black uppercase tracking-[0.2em] border-2 border-black dark:border-white px-10 py-4 rounded-full text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 shadow-xl"
+                onClick={closeMobileMenu}
+              >
+                Resume
+              </a>
+            </li>
+            <li>
+              <button
+                onClick={closeMobileMenu}
+                className="mt-12 text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+              >
+                <span className="text-sm font-bold uppercase tracking-widest">Close Menu</span>
+              </button>
+            </li>
+          </ul>
         </div>
       )}
     </div>
