@@ -13,8 +13,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const App: React.FC = () => {
-  const { theme } = useContext(ThemeContext);
-
   useEffect(() => {
     AOS.init({
       duration: 1000,
