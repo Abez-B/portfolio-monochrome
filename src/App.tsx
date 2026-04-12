@@ -11,12 +11,9 @@ import Footer from './components/Footer/Footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-scroll';
-import { useContext } from 'react';
-import { ThemeContext } from './context/ThemeContext';
 
 const App: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
-  const { theme } = useContext(ThemeContext);
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   const closeMobileMenu = () => setMobileMenuOpen(false);
