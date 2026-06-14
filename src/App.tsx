@@ -10,6 +10,7 @@ import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { FloatingActionIsland } from './components/FloatingActionIsland';
 
 const App: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
@@ -56,6 +57,7 @@ const App: React.FC = () => {
         <Contact />
       </main>
       <Footer />
+      <FloatingActionIsland />
     </div>
   );
 }

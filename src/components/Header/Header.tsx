@@ -126,22 +126,6 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
                 </li>
               ))}
             </ul>
-            
-            <div className="pt-4 pb-2 border-t border-black/5 dark:border-white/5 mt-3 flex items-center justify-between">
-              <span className="font-mono text-[10px] uppercase tracking-widest text-gray-500 dark:text-gray-400">Theme</span>
-              <ThemeToggle />
-            </div>
-
-            <div className="mt-2 pt-2 border-t border-black/10 dark:border-white/10">
-              <a
-                href="/resume.pdf"
-                download="Bharath_Kumar_Resume.pdf"
-                onClick={closeMobileMenu}
-                className="flex items-center justify-center w-full px-4 py-2 rounded-xl text-sm font-mono font-semibold bg-black dark:bg-white text-white dark:text-black"
-              >
-                $ Resume
-              </a>
-            </div>
           </div>
         )}
       </div>

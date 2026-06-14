@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
   return (
     <motion.section
       id="hero"
-      className="bg-white text-black dark:bg-black dark:text-white min-h-screen flex items-center justify-center px-4 relative"
+      className="bg-white text-black dark:bg-black dark:text-white min-h-[70vh] py-12 md:py-0 md:min-h-screen flex items-center justify-center px-4 relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
         <motion.img
           src={profilePicture}
           alt="Profile"
-          className="w-32 h-32 md:w-48 md:h-48 rounded-full mx-auto mb-8 grayscale object-cover ring-2 ring-gray-700 dark:ring-gray-300"
+          className="w-32 h-32 md:w-48 md:h-48 rounded-full mx-auto mb-4 md:mb-8 grayscale object-cover ring-2 ring-gray-700 dark:ring-gray-300"
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 300 }}
         />
@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
           className="text-lg sm:text-2xl md:text-3xl font-bold leading-tight mb-4"
         />
         <motion.p
-          className="text-white dark:text-gray-700 text-base sm:text-xl md:text-2xl mb-8 max-w-2xl mx-auto"
+          className="text-white dark:text-gray-700 text-base sm:text-xl md:text-2xl mb-6 md:mb-8 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.5 }}
