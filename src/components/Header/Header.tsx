@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link } from 'react-scroll';
 import { gsap } from 'gsap';
 import { ThemeContext } from '../../context/ThemeContext';
-import darkLogo from '../../logo-dark.svg';
-import lightLogo from '../../logo-light.svg';
+import bkLogo from '../../assets/images/BKlogo.png';
 import { ThemeToggle } from '../ThemeToggle';
 
 interface HeaderProps {
@@ -59,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
           {/* Logo Section */}
           <Link to="hero" smooth={true} duration={500} onClick={closeMobileMenu} className="flex items-center gap-2 shrink-0 group cursor-pointer">
             <img 
-              src={theme === 'dark' ? darkLogo : lightLogo} 
+              src={bkLogo} 
               alt="Logo" 
               className="h-8 w-8 object-contain transition-transform duration-200 group-hover:scale-110" 
             />
