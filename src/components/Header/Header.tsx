@@ -85,8 +85,9 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
           <div className="hidden md:flex items-center gap-4 shrink-0">
             <ThemeToggle />
             <a
-              href="/resume.pdf"
-              download="Bharath_Kumar_Resume.pdf"
+              href="https://drive.google.com/file/d/1MwlG95bm4T963YPAS6rVrX8gYdeTDHah/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex shrink-0 items-center gap-1.5 px-4 py-1.5 rounded-full font-mono text-[11px] font-semibold transition-all duration-200 hover:scale-105 bg-black dark:bg-white text-white dark:text-black shadow-[0_0_20px_rgba(0,0,0,0.2)] dark:shadow-[0_0_24px_rgba(255,255,255,0.2)]"
             >
               $ Resume

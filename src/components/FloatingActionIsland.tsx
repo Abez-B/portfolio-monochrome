@@ -17,8 +17,9 @@ export function FloatingActionIsland() {
       <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-white/85 dark:bg-black/85 backdrop-blur-3xl shadow-2xl border border-black/10 dark:border-white/10 pointer-events-auto transition-all duration-300">
         <ThemeToggle />
         <a
-          href="/resume.pdf"
-          download="Bharath_Kumar_Resume.pdf"
+          href="https://drive.google.com/file/d/1MwlG95bm4T963YPAS6rVrX8gYdeTDHah/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center justify-center px-5 py-2 rounded-full font-mono text-[13px] font-bold transition-transform hover:scale-105 bg-black dark:bg-white text-white dark:text-black shadow-lg"
         >
           Download Resume
