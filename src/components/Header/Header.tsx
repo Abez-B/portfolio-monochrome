@@ -58,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
             <img 
               src={bkLogo} 
               alt="Logo" 
-              className="h-8 w-8 object-contain transition-transform duration-200 group-hover:scale-110" 
+              className="h-8 w-8 object-contain transition-transform duration-200 group-hover:scale-110 dark:invert" 
             />
             <span className="text-sm font-bold tracking-wider text-black dark:text-white hidden sm:block">
               BHARATH
