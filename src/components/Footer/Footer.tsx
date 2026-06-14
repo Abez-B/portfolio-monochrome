@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black text-white dark:bg-white dark:text-black py-8 px-4 text-center backdrop-blur-md bg-opacity-70 dark:bg-opacity-70">
+    <footer className="bg-white text-black dark:bg-black dark:text-white py-8 px-4 text-center border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-6xl mx-auto">
         <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
           &copy; {new Date().getFullYear()} Bharath Kumar. All rights reserved.

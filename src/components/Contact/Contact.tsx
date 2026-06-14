@@ -103,6 +103,18 @@ const Contact: React.FC = () => {
                   +91 63794 78168
                 </a>
               </div>
+              
+              <div>
+                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-wider font-semibold mb-1">LinkedIn</p>
+                <a
+                  href="https://www.linkedin.com/in/bharath-kumarjp02/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg font-medium hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                >
+                  bharath-kumarjp02
+                </a>
+              </div>
             </div>
           </div>
 
