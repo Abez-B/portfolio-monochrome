@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-scroll';
 import { gsap } from 'gsap';
-import { ThemeContext } from '../../context/ThemeContext';
 import bkLogo from '../../assets/images/BKlogo.png';
 import { ThemeToggle } from '../ThemeToggle';
 
@@ -15,7 +14,6 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, closeMobileMenu, navLinks }) => {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const navRef = useRef<HTMLDivElement>(null);
-  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
