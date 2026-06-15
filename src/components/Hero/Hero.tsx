@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
           className="text-lg sm:text-2xl md:text-3xl font-bold leading-tight mb-4"
         />
         <motion.p
-          className="text-white dark:text-gray-700 text-base sm:text-xl md:text-2xl mb-6 md:mb-8 max-w-2xl mx-auto"
+          className="text-gray-700 dark:text-gray-300 text-base sm:text-xl md:text-2xl mb-6 md:mb-8 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.5 }}
