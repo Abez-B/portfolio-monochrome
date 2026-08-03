@@ -85,9 +85,15 @@ export default function LiquidEther({
       }
       init(container) {
         this.container = container;
-        this.pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+        this.pixelRatio = Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.5);
         this.resize();
-        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        this.renderer = new THREE.WebGLRenderer({
+          antialias: false,
+          alpha: true,
+          powerPreference: "high-performance",
+          precision: isMobile ? "mediump" : "highp"
+        });
         this.renderer.autoClear = false;
         this.renderer.setClearColor(new THREE.Color(0x000000), 0);
         this.renderer.setPixelRatio(this.pixelRatio);

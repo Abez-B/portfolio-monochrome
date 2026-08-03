@@ -29,10 +29,10 @@ code, .font-mono, pre {
 /* ── Glassmorphism design tokens ──────────────────────────────── */
 /* Light mode: frosted translucent white over the light liquid */
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-bg: rgba(255, 255, 255, 0.70);
   --glass-border: rgba(0, 0, 0, 0.10);
-  --glass-blur: blur(16px);
-  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --glass-blur: blur(10px);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   --glass-text: #09090b;
   --glass-text-muted: #52525b;
   --glass-tag-bg: rgba(0, 0, 0, 0.05);
@@ -42,10 +42,10 @@ code, .font-mono, pre {
 
 /* Dark mode: frosted dark glass over the liquid background */
 .dark {
-  --glass-bg: rgba(16, 16, 20, 0.58);
+  --glass-bg: rgba(16, 16, 20, 0.65);
   --glass-border: rgba(255, 255, 255, 0.15);
-  --glass-blur: blur(16px);
-  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --glass-blur: blur(10px);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.50);
   --glass-text: #fafafa;
   --glass-text-muted: #a1a1aa;
   --glass-tag-bg: rgba(255, 255, 255, 0.08);
@@ -56,16 +56,17 @@ code, .font-mono, pre {
 /* Mobile Glassmorphism & GPU Acceleration Overrides */
 @media (max-width: 768px) {
   :root {
-    --glass-bg: rgba(255, 255, 255, 0.75);
-    --glass-blur: blur(10px);
+    --glass-bg: rgba(255, 255, 255, 0.80);
+    --glass-blur: blur(6px);
   }
   .dark {
-    --glass-bg: rgba(14, 14, 18, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.18);
-    --glass-blur: blur(10px);
+    --glass-bg: rgba(14, 14, 18, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.16);
+    --glass-blur: blur(6px);
   }
 }
 
+/* Hardware accelerated glass card & button layers */
 .glass-card {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -73,6 +74,7 @@ code, .font-mono, pre {
   -webkit-backdrop-filter: var(--glass-blur);
   box-shadow: var(--glass-shadow);
   border-radius: 1.25rem;
+  will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
@@ -81,8 +83,6 @@ code, .font-mono, pre {
   background: var(--glass-tag-bg);
   color: var(--glass-tag-text);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
 }
 
 .glass-btn {
@@ -90,7 +90,9 @@ code, .font-mono, pre {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s ease, background 0.2s ease;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .glass-btn:hover {

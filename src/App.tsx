@@ -77,18 +77,18 @@ const MainPortfolio: React.FC = () => {
       <div className="fixed inset-0 z-0 pointer-events-none bg-white dark:bg-black">
         <LiquidEther
           key={theme}
-          mouseForce={isMobile ? 12 : 20}
-          cursorSize={isMobile ? 60 : 100}
+          mouseForce={isMobile ? 12 : 18}
+          cursorSize={isMobile ? 60 : 90}
           isViscous={false}
-          viscous={30}
-          iterationsPoisson={isMobile ? 12 : 32}
-          iterationsViscous={isMobile ? 12 : 32}
+          viscous={25}
+          iterationsPoisson={isMobile ? 8 : 14}
+          iterationsViscous={isMobile ? 8 : 14}
           colors={liquidColors}
           autoDemo
-          autoSpeed={isMobile ? 0.3 : 0.5}
-          autoIntensity={theme === 'dark' ? (isMobile ? 2.5 : 3.5) : (isMobile ? 1.5 : 2.2)}
+          autoSpeed={isMobile ? 0.3 : 0.45}
+          autoIntensity={theme === 'dark' ? (isMobile ? 2.5 : 3.2) : (isMobile ? 1.5 : 2.0)}
           isBounce={false}
-          resolution={isMobile ? 0.25 : 0.5}
+          resolution={isMobile ? 0.2 : 0.35}
         />
       </div>
 
