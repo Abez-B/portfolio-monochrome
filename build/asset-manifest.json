@@ -1,23 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.1fb03250.css",
-    "main.js": "/static/js/main.798c1759.js",
+    "main.css": "/static/css/main.a9fb51ea.css",
+    "main.js": "/static/js/main.e49b56b2.js",
     "static/js/453.4e9befeb.chunk.js": "/static/js/453.4e9befeb.chunk.js",
+    "static/media/BKlogo.png": "/static/media/BKlogo.c5cdd99f8cfcf6e214a2.png",
     "static/media/fossgcee-thumbnail.png": "/static/media/fossgcee-thumbnail.79ba67c503c931f28bfe.png",
-    "static/media/ai-code-eval-thumbnail.png": "/static/media/ai-code-eval-thumbnail.2fd5ad1fa25dc83275b0.png",
     "static/media/linux-health-monitor-thumbnail.png": "/static/media/linux-health-monitor-thumbnail.086f8fbd5fddc41780b9.png",
-    "static/media/hungerblock-thumbnail.png": "/static/media/hungerblock-thumbnail.0c4ffef586e9a1eeadb0.png",
-    "static/media/grade-notifier-thumbnail.png": "/static/media/grade-notifier-thumbnail.866ba1c6898f52e65f18.png",
     "static/media/profile-picture.jpg": "/static/media/profile-picture.2005dac948451a52b9bf.jpg",
     "index.html": "/index.html",
-    "static/media/logo-dark.svg": "/static/media/logo-dark.af9aa30bcf0ef72bb3a1116497435389.svg",
-    "static/media/logo-light.svg": "/static/media/logo-light.bea57c9344ccfc7fc8a560155b9be2a9.svg",
-    "main.1fb03250.css.map": "/static/css/main.1fb03250.css.map",
-    "main.798c1759.js.map": "/static/js/main.798c1759.js.map",
+    "main.a9fb51ea.css.map": "/static/css/main.a9fb51ea.css.map",
+    "main.e49b56b2.js.map": "/static/js/main.e49b56b2.js.map",
     "453.4e9befeb.chunk.js.map": "/static/js/453.4e9befeb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1fb03250.css",
-    "static/js/main.798c1759.js"
+    "static/css/main.a9fb51ea.css",
+    "static/js/main.e49b56b2.js"
   ]
 }

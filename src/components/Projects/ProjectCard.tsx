@@ -16,7 +16,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow duration-300" data-aos="fade-up">
+    <div className="glass-card p-6 flex flex-col h-full hover:scale-[1.01] transition-all duration-300" data-aos="fade-up">
       <img
         src={project.thumbnail}
         alt={`${project.title} thumbnail`}
@@ -28,7 +28,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         <h4 className="text-black dark:text-white text-md font-semibold mb-2">Technologies:</h4>
         <ul className="flex flex-wrap gap-2">
           {project.technologies.map((tech, index) => (
-            <li key={index} className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs px-3 py-1 rounded-full">
+            <li key={index} className="glass-tag text-xs px-3 py-1 rounded-full">
               {tech}
             </li>
           ))}
@@ -40,7 +40,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             href={project.liveDemo}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 text-center text-black dark:text-white border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300 text-sm font-medium"
+            className="glass-btn flex-1 text-center px-4 py-2 rounded-md text-sm font-medium"
           >
             Live Demo
           </a>
@@ -50,7 +50,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             href={project.githubRepo}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 text-center text-black dark:text-white border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300 text-sm font-medium"
+            className="glass-btn flex-1 text-center px-4 py-2 rounded-md text-sm font-medium"
           >
             GitHub Repo
           </a>

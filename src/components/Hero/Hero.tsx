@@ -4,19 +4,20 @@ import { motion } from 'framer-motion';
 
 import profilePicture from '../../assets/images/profile-picture.jpg';
 import TypingText from './TypingText';
+import { useCMS } from '../../cms/CMSContext';
 
 const Hero: React.FC = () => {
-
+  const { cmsData } = useCMS();
+  const { hero } = cmsData;
 
   return (
     <motion.section
       id="hero"
-      className="bg-white text-black dark:bg-black dark:text-white min-h-[70vh] py-12 md:py-0 md:min-h-screen flex items-center justify-center px-4 relative"
+      className="text-black dark:text-white min-h-[70vh] py-12 md:py-0 md:min-h-screen flex items-center justify-center px-4 relative z-10"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-
       <div className="text-center max-w-4xl mx-auto z-10">
         <motion.img
           src={profilePicture}
@@ -26,11 +27,11 @@ const Hero: React.FC = () => {
           transition={{ type: 'spring', stiffness: 300 }}
         />
         <TypingText
-          text="Hi, I'm Bharath"
+          text={`Hi, I'm ${hero.name.split(' ')[0]}`}
           className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight mb-4"
         />
         <TypingText
-          text="An Aspiring Network Engineer"
+          text={hero.title}
           as="h2"
           className="text-lg sm:text-2xl md:text-3xl font-bold leading-tight mb-4"
         />
@@ -40,7 +41,7 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.5 }}
         >
-          Building secure, scalable network infrastructure and maintaining robust Linux systems.
+          {hero.subtitle}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -48,12 +49,12 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 2 }}
         >
           <Link
-            to="projects"
+            to={hero.ctaTarget}
             smooth={true}
             duration={500}
-            className="inline-block bg-black text-white dark:bg-white dark:text-black border border-gray-300 dark:border-gray-700 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors duration-300 cursor-pointer shadow-lg"
+            className="inline-block glass-btn px-8 py-3 rounded-md text-lg font-semibold cursor-pointer shadow-lg"
           >
-            View My Work
+            {hero.ctaText}
           </Link>
         </motion.div>
       </div>

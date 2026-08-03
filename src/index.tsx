@@ -5,6 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './context/ThemeContext';
 
+import { CMSProvider } from './cms/CMSContext';
+import { BrowserRouter } from 'react-router-dom';
+
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Failed to find the root element');
 
@@ -12,9 +15,13 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+    <BrowserRouter>
+      <CMSProvider>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </CMSProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
