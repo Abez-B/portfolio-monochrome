@@ -22,41 +22,42 @@ code {
 }
 
 /* ── Glassmorphism design tokens ──────────────────────────────── */
-/* Light mode: frosted white over the light liquid */
+/* Light mode: frosted translucent white over the light liquid */
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg: rgba(255, 255, 255, 0.60);
   --glass-border: rgba(0, 0, 0, 0.08);
   --glass-blur: blur(14px);
-  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   --glass-text: #111111;
   --glass-text-muted: #444444;
-  --glass-tag-bg: rgba(0, 0, 0, 0.06);
-  --glass-tag-text: #333333;
+  --glass-tag-bg: rgba(0, 0, 0, 0.05);
+  --glass-tag-text: #222222;
   --glass-btn-border: rgba(0, 0, 0, 0.15);
 }
 
-/* Dark mode: frosted dark over the dark liquid */
+/* Dark mode: frosted dark glass over the liquid background */
 .dark {
-  --glass-bg: rgba(255, 255, 255, 0.07);
-  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-bg: rgba(18, 18, 22, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.15);
   --glass-blur: blur(14px);
-  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.40);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.50);
   --glass-text: #f0f0f0;
   --glass-text-muted: #aaaaaa;
-  --glass-tag-bg: rgba(255, 255, 255, 0.10);
-  --glass-tag-text: #dddddd;
-  --glass-btn-border: rgba(255, 255, 255, 0.18);
+  --glass-tag-bg: rgba(255, 255, 255, 0.08);
+  --glass-tag-text: #e5e5e5;
+  --glass-btn-border: rgba(255, 255, 255, 0.20);
 }
 
-/* Mobile Performance Overrides: lighter backdrop blur + higher opacity for 60fps scrolling */
+/* Mobile Glassmorphism & GPU Acceleration Overrides */
 @media (max-width: 768px) {
   :root {
-    --glass-bg: rgba(255, 255, 255, 0.88);
-    --glass-blur: blur(4px);
+    --glass-bg: rgba(255, 255, 255, 0.70);
+    --glass-blur: blur(10px);
   }
   .dark {
-    --glass-bg: rgba(15, 15, 15, 0.88);
-    --glass-blur: blur(4px);
+    --glass-bg: rgba(15, 15, 20, 0.60);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-blur: blur(10px);
   }
 }
 
@@ -66,20 +67,51 @@ code {
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   box-shadow: var(--glass-shadow);
-  border-radius: 0.75rem;
+  border-radius: 1rem;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .glass-tag {
   background: var(--glass-tag-bg);
   color: var(--glass-tag-text);
   border: 1px solid var(--glass-border);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .glass-btn {
   border: 1px solid var(--glass-btn-border);
-  transition: background 0.2s, color 0.2s;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  transition: all 0.2s ease-in-out;
 }
 
 .glass-btn:hover {
   background: var(--glass-tag-bg);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Glow effects & gradient typography */
+.gradient-text-dark {
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-light {
+  background: linear-gradient(135deg, #09090b 0%, #52525b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Pulse indicator animation */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.15); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite ease-in-out;
 }

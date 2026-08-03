@@ -1,56 +1,55 @@
 import React from 'react';
-import { FaNodeJs, FaGitAlt, FaGithub, FaDatabase, FaLinux, FaJava, FaPython, FaNetworkWired, FaServer, FaTerminal } from 'react-icons/fa';
-import { SiExpress, SiMongodb } from 'react-icons/si';
+import { FaLinux, FaNetworkWired, FaCode, FaTools } from 'react-icons/fa';
 import { useCMS } from '../../cms/CMSContext';
 
-interface SkillIconProps {
-  children: React.ReactNode;
-}
-
-const SkillIcon: React.FC<SkillIconProps> = ({ children }) => (
-  <div className="w-12 h-12 flex items-center justify-center glass-tag rounded-full p-2">
-    {children}
-  </div>
-);
-
-// Generic icon for unknown skills
-const DefaultIcon = () => <FaTerminal className="w-8 h-8 text-black dark:text-white" />;
-
-const getIconForSkill = (name: string): React.ReactNode => {
-  const n = name.toLowerCase();
-  if (n.includes('linux') || n.includes('ubuntu') || n.includes('arch')) return <FaLinux className="w-8 h-8 text-black dark:text-white" />;
-  if (n.includes('shell') || n.includes('bash')) return <FaTerminal className="w-8 h-8 text-black dark:text-white" />;
-  if (n.includes('server') || n.includes('system')) return <FaServer className="w-8 h-8 text-black dark:text-white" />;
-  if (n.includes('zabbix') || n.includes('network') || n.includes('tcp')) return <FaNetworkWired className="w-8 h-8 text-black dark:text-white" />;
-  if (n.includes('python')) return <FaPython className="w-8 h-8 text-black dark:text-white" />;
-  if (n.includes('sql') || n.includes('dbms')) return <FaDatabase className="w-8 h-8 text-black dark:text-white" />;
-  if (n.includes('node')) return <FaNodeJs className="w-8 h-8 text-black dark:text-white" />;
-  if (n.includes('java')) return <FaJava className="w-8 h-8 text-black dark:text-white" />;
-  if (n.includes('github')) return <FaGithub className="w-8 h-8 text-black dark:text-white" />;
-  if (n.includes('git')) return <FaGitAlt className="w-8 h-8 text-black dark:text-white" />;
-  if (n.includes('mongo')) return <SiMongodb className="w-8 h-8 text-black dark:text-white" />;
-  if (n.includes('express')) return <SiExpress className="w-8 h-8 text-black dark:text-white" />;
-  
-  return <DefaultIcon />;
+const getCategoryIcon = (title: string) => {
+  const t = title.toLowerCase();
+  if (t.includes('system') || t.includes('admin') || t.includes('devops')) return <FaLinux className="w-5 h-5 text-blue-500 dark:text-blue-400" />;
+  if (t.includes('network') || t.includes('web')) return <FaNetworkWired className="w-5 h-5 text-emerald-500 dark:text-emerald-400" />;
+  if (t.includes('language') || t.includes('backend') || t.includes('scripting')) return <FaCode className="w-5 h-5 text-purple-500 dark:text-purple-400" />;
+  return <FaTools className="w-5 h-5 text-amber-500 dark:text-amber-400" />;
 };
 
 const Skills: React.FC = () => {
   const { cmsData } = useCMS();
 
   return (
-    <section id="skills" className="text-black dark:text-white py-12 md:py-16 px-4" data-aos="fade-up">
+    <section id="skills" className="text-black dark:text-white py-12 md:py-16 px-4 relative z-10" data-aos="fade-up">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12">My Skills</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 items-stretch">
-          {cmsData.skillCategories.map((category, index) => (
-            <div key={category.id} className="glass-card p-6 shadow-md" data-aos="fade-up" data-aos-delay={(index + 1) * 100}>
-              <h3 className="text-2xl font-bold mb-6">{category.title}</h3>
-              <div className="flex flex-wrap gap-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-3">Technical Toolkit</h2>
+          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
+            Core engineering competencies spanning systems administration, networking, full-stack web, and DevOps.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 items-stretch">
+          {cmsData.skillCategories.map((category) => (
+            <div
+              key={category.id}
+              className="glass-card p-5 sm:p-7 shadow-xl border border-white/20 dark:border-white/10 hover:border-white/30 transition-all duration-300 flex flex-col"
+            >
+              <div className="flex items-center gap-3 border-b border-white/10 pb-3 mb-4">
+                <div className="p-2.5 rounded-xl glass-tag">
+                  {getCategoryIcon(category.title)}
+                </div>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold tracking-tight">{category.title}</h3>
+                  <span className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-widest font-semibold">
+                    {category.skills.length} Competencies
+                  </span>
+                </div>
+              </div>
+
+              {/* Compact, elegant glass pills layout */}
+              <div className="flex flex-wrap gap-2.5 mt-auto">
                 {category.skills.map((skill, sIndex) => (
-                  <div key={sIndex} className="flex items-center space-x-2 w-full">
-                    <SkillIcon>{getIconForSkill(skill.name)}</SkillIcon>
-                    <span className="text-black dark:text-white text-lg leading-none flex-grow min-w-0">{skill.name}</span>
-                  </div>
+                  <span
+                    key={sIndex}
+                    className="glass-tag px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold tracking-tight transition-all hover:scale-105 hover:border-white/40 cursor-default"
+                  >
+                    {skill.name}
+                  </span>
                 ))}
               </div>
             </div>
