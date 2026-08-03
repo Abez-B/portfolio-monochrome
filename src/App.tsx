@@ -32,10 +32,13 @@ const MainPortfolio: React.FC = () => {
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   useEffect(() => {
     AOS.init({
-      duration: 1000,
+      duration: 800,
       once: true,
+      disable: window.innerWidth < 768,
     });
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -53,16 +56,18 @@ const MainPortfolio: React.FC = () => {
       <div className="fixed inset-0 z-0 pointer-events-none bg-white dark:bg-black">
         <LiquidEther
           key={theme}
-          mouseForce={20}
-          cursorSize={100}
+          mouseForce={isMobile ? 12 : 20}
+          cursorSize={isMobile ? 60 : 100}
           isViscous={false}
           viscous={30}
+          iterationsPoisson={isMobile ? 12 : 32}
+          iterationsViscous={isMobile ? 12 : 32}
           colors={liquidColors}
           autoDemo
-          autoSpeed={0.5}
-          autoIntensity={theme === 'dark' ? 3.5 : 2.2}
+          autoSpeed={isMobile ? 0.3 : 0.5}
+          autoIntensity={theme === 'dark' ? (isMobile ? 2.5 : 3.5) : (isMobile ? 1.5 : 2.2)}
           isBounce={false}
-          resolution={0.5}
+          resolution={isMobile ? 0.25 : 0.5}
         />
       </div>
       <Helmet>

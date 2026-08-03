@@ -48,6 +48,18 @@ code {
   --glass-btn-border: rgba(255, 255, 255, 0.18);
 }
 
+/* Mobile Performance Overrides: lighter backdrop blur + higher opacity for 60fps scrolling */
+@media (max-width: 768px) {
+  :root {
+    --glass-bg: rgba(255, 255, 255, 0.88);
+    --glass-blur: blur(4px);
+  }
+  .dark {
+    --glass-bg: rgba(15, 15, 15, 0.88);
+    --glass-blur: blur(4px);
+  }
+}
+
 .glass-card {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
