@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import About from './components/About/About';
@@ -17,14 +17,21 @@ import { ThemeContext } from './context/ThemeContext';
 import { useCMS } from './cms/CMSContext';
 import AdminPanel from './cms/AdminPanel';
 
-const LandingPage: React.FC = () => {
+// ScrollToTop on route change
+const ScrollToTop: React.FC = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
+// Home Landing Page: Hero, About & Contact
+const HomePage: React.FC = () => {
   return (
     <>
       <Hero />
       <About />
-      <Skills />
-      <Projects />
-      <Experience />
       <Contact />
     </>
   );
@@ -64,6 +71,8 @@ const MainPortfolio: React.FC = () => {
 
   return (
     <div className="text-black dark:text-white font-sans transition-colors duration-300 min-h-screen relative z-0 flex flex-col justify-between">
+      <ScrollToTop />
+      
       {/* Background Liquid Simulation */}
       <div className="fixed inset-0 z-0 pointer-events-none bg-white dark:bg-black">
         <LiquidEther
@@ -99,8 +108,15 @@ const MainPortfolio: React.FC = () => {
         navLinks={cmsData.navLinks}
       />
 
-      <main className="pt-24 relative z-10 flex-1 space-y-12 md:space-y-20">
-        <LandingPage />
+      <main className="pt-24 pb-12 relative z-10 flex-1 space-y-12 md:space-y-16">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
 
       <Footer />
