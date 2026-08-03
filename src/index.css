@@ -2,18 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Global Tech Pixel Font System ────────────────────────────── */
-* {
-  font-family: 'Pixelify Sans', 'Silkscreen', 'Share Tech Mono', monospace !important;
-}
-
+/* ── Modern Tech Grotesk Font System ──────────────────────────── */
 body {
   margin: 0;
-  font-family: 'Pixelify Sans', 'Silkscreen', 'Share Tech Mono', monospace !important;
+  font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
 }
 
 html {
@@ -22,39 +18,39 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6, .font-display {
-  font-family: 'Pixelify Sans', 'Silkscreen', monospace !important;
-  letter-spacing: 0.01em;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.03em;
 }
 
 code, .font-mono, pre {
-  font-family: 'Share Tech Mono', 'Silkscreen', monospace !important;
+  font-family: 'Space Mono', Consolas, monospace;
 }
 
 /* ── Glassmorphism design tokens ──────────────────────────────── */
 /* Light mode: frosted translucent white over the light liquid */
 :root {
   --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-border: rgba(0, 0, 0, 0.12);
+  --glass-border: rgba(0, 0, 0, 0.10);
   --glass-blur: blur(16px);
   --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   --glass-text: #09090b;
   --glass-text-muted: #52525b;
-  --glass-tag-bg: rgba(0, 0, 0, 0.06);
+  --glass-tag-bg: rgba(0, 0, 0, 0.05);
   --glass-tag-text: #18181b;
-  --glass-btn-border: rgba(0, 0, 0, 0.16);
+  --glass-btn-border: rgba(0, 0, 0, 0.15);
 }
 
 /* Dark mode: frosted dark glass over the liquid background */
 .dark {
-  --glass-bg: rgba(16, 16, 20, 0.60);
-  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-bg: rgba(16, 16, 20, 0.58);
+  --glass-border: rgba(255, 255, 255, 0.15);
   --glass-blur: blur(16px);
-  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.60);
+  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
   --glass-text: #fafafa;
   --glass-text-muted: #a1a1aa;
-  --glass-tag-bg: rgba(255, 255, 255, 0.09);
+  --glass-tag-bg: rgba(255, 255, 255, 0.08);
   --glass-tag-text: #f4f4f5;
-  --glass-btn-border: rgba(255, 255, 255, 0.22);
+  --glass-btn-border: rgba(255, 255, 255, 0.20);
 }
 
 /* Mobile Glassmorphism & GPU Acceleration Overrides */
@@ -76,7 +72,7 @@ code, .font-mono, pre {
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   box-shadow: var(--glass-shadow);
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
