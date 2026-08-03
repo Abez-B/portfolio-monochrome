@@ -4,9 +4,7 @@
 
 body {
   margin: 0;
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -14,48 +12,54 @@ body {
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  letter-spacing: -0.025em;
 }
 
 code, .font-mono {
-  font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+  font-family: 'Fira Code', Consolas, monospace;
 }
 
 /* ── Glassmorphism design tokens ──────────────────────────────── */
 /* Light mode: frosted translucent white over the light liquid */
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.60);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-blur: blur(14px);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  --glass-text: #111111;
-  --glass-text-muted: #444444;
-  --glass-tag-bg: rgba(0, 0, 0, 0.05);
-  --glass-tag-text: #222222;
-  --glass-btn-border: rgba(0, 0, 0, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(0, 0, 0, 0.09);
+  --glass-blur: blur(16px);
+  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+  --glass-text: #09090b;
+  --glass-text-muted: #52525b;
+  --glass-tag-bg: rgba(0, 0, 0, 0.04);
+  --glass-tag-text: #18181b;
+  --glass-btn-border: rgba(0, 0, 0, 0.14);
 }
 
 /* Dark mode: frosted dark glass over the liquid background */
 .dark {
-  --glass-bg: rgba(18, 18, 22, 0.55);
-  --glass-border: rgba(255, 255, 255, 0.15);
-  --glass-blur: blur(14px);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.50);
-  --glass-text: #f0f0f0;
-  --glass-text-muted: #aaaaaa;
-  --glass-tag-bg: rgba(255, 255, 255, 0.08);
-  --glass-tag-text: #dddddd;
-  --glass-btn-border: rgba(255, 255, 255, 0.20);
+  --glass-bg: rgba(16, 16, 20, 0.58);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-blur: blur(16px);
+  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --glass-text: #fafafa;
+  --glass-text-muted: #a1a1aa;
+  --glass-tag-bg: rgba(255, 255, 255, 0.07);
+  --glass-tag-text: #f4f4f5;
+  --glass-btn-border: rgba(255, 255, 255, 0.18);
 }
 
 /* Mobile Glassmorphism & GPU Acceleration Overrides */
 @media (max-width: 768px) {
   :root {
-    --glass-bg: rgba(255, 255, 255, 0.70);
+    --glass-bg: rgba(255, 255, 255, 0.75);
     --glass-blur: blur(10px);
   }
   .dark {
-    --glass-bg: rgba(15, 15, 20, 0.60);
-    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-bg: rgba(14, 14, 18, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.16);
     --glass-blur: blur(10px);
   }
 }
@@ -66,7 +70,7 @@ code, .font-mono {
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   box-shadow: var(--glass-shadow);
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
@@ -84,7 +88,7 @@ code, .font-mono {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-btn:hover {
@@ -92,23 +96,10 @@ code, .font-mono {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Glow effects & gradient typography */
-.gradient-text-dark {
-  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-text-light {
-  background: linear-gradient(135deg, #09090b 0%, #52525b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 /* Pulse indicator animation */
 @keyframes pulse-glow {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.15); }
+  50% { opacity: 0.4; transform: scale(1.2); }
 }
 
 .animate-pulse-glow {

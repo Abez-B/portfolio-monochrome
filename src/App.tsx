@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Routes, Route, useNavigate, useLocation, Link } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import About from './components/About/About';
@@ -17,90 +17,20 @@ import { ThemeContext } from './context/ThemeContext';
 import { useCMS } from './cms/CMSContext';
 import AdminPanel from './cms/AdminPanel';
 
-// ScrollToTop on route change
-const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-};
-
-// Home Overview Page (Hero + Explore Quick Cards)
-const HomePage: React.FC = () => {
+const LandingPage: React.FC = () => {
   return (
     <>
       <Hero />
-      <section className="py-12 px-4 max-w-5xl mx-auto">
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold tracking-tight mb-2">Explore My Portfolio</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Navigate through discrete sections to learn about my background, skills, and projects.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Link
-            to="/about"
-            className="glass-card p-6 flex flex-col justify-between hover:scale-[1.03] transition-all border border-white/20 dark:border-white/10 group"
-          >
-            <div>
-              <span className="text-2xl mb-2 block">👤</span>
-              <h4 className="font-bold text-lg mb-1 group-hover:underline">About Me</h4>
-              <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                Background, FOSS Club leadership, and engineering goals.
-              </p>
-            </div>
-            <span className="text-xs font-mono font-bold mt-4 text-blue-500 dark:text-blue-400">Read Bio →</span>
-          </Link>
-
-          <Link
-            to="/skills"
-            className="glass-card p-6 flex flex-col justify-between hover:scale-[1.03] transition-all border border-white/20 dark:border-white/10 group"
-          >
-            <div>
-              <span className="text-2xl mb-2 block">🛠</span>
-              <h4 className="font-bold text-lg mb-1 group-hover:underline">Skills Toolkit</h4>
-              <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                Linux, KVM, Docker, C++, Python, TS, and DevOps skills.
-              </p>
-            </div>
-            <span className="text-xs font-mono font-bold mt-4 text-emerald-500 dark:text-emerald-400">View Skills →</span>
-          </Link>
-
-          <Link
-            to="/projects"
-            className="glass-card p-6 flex flex-col justify-between hover:scale-[1.03] transition-all border border-white/20 dark:border-white/10 group"
-          >
-            <div>
-              <span className="text-2xl mb-2 block">📁</span>
-              <h4 className="font-bold text-lg mb-1 group-hover:underline">Projects</h4>
-              <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                Thirukkural Widget, Tamil OCR Pipeline, Health Monitor, and DApps.
-              </p>
-            </div>
-            <span className="text-xs font-mono font-bold mt-4 text-purple-500 dark:text-purple-400">Browse Projects →</span>
-          </Link>
-
-          <Link
-            to="/contact"
-            className="glass-card p-6 flex flex-col justify-between hover:scale-[1.03] transition-all border border-white/20 dark:border-white/10 group"
-          >
-            <div>
-              <span className="text-2xl mb-2 block">📬</span>
-              <h4 className="font-bold text-lg mb-1 group-hover:underline">Contact & QR</h4>
-              <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                Connect on Mastodon, Matrix, Telegram, WhatsApp & email.
-              </p>
-            </div>
-            <span className="text-xs font-mono font-bold mt-4 text-amber-500 dark:text-amber-400">Scan & Connect →</span>
-          </Link>
-        </div>
-      </section>
+      <About />
+      <Skills />
+      <Projects />
+      <Experience />
+      <Contact />
     </>
   );
 };
 
-const PortfolioLayout: React.FC = () => {
+const MainPortfolio: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
   const { theme } = React.useContext(ThemeContext);
   const { cmsData } = useCMS();
@@ -134,8 +64,6 @@ const PortfolioLayout: React.FC = () => {
 
   return (
     <div className="text-black dark:text-white font-sans transition-colors duration-300 min-h-screen relative z-0 flex flex-col justify-between">
-      <ScrollToTop />
-      
       {/* Background Liquid Simulation */}
       <div className="fixed inset-0 z-0 pointer-events-none bg-white dark:bg-black">
         <LiquidEther
@@ -171,15 +99,8 @@ const PortfolioLayout: React.FC = () => {
         navLinks={cmsData.navLinks}
       />
 
-      <main className="pt-24 pb-12 relative z-10 flex-1">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+      <main className="pt-24 relative z-10 flex-1 space-y-12 md:space-y-20">
+        <LandingPage />
       </main>
 
       <Footer />
@@ -192,7 +113,7 @@ const App: React.FC = () => {
   return (
     <Routes>
       <Route path="/admin" element={<AdminPanel />} />
-      <Route path="/*" element={<PortfolioLayout />} />
+      <Route path="/*" element={<MainPortfolio />} />
     </Routes>
   );
 };

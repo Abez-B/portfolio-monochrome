@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.c2cd06b4.css",
-    "main.js": "/static/js/main.fae3547d.js",
+    "main.css": "/static/css/main.0fb290b8.css",
+    "main.js": "/static/js/main.61dcf305.js",
     "static/js/453.4e9befeb.chunk.js": "/static/js/453.4e9befeb.chunk.js",
     "static/media/BKlogo.png": "/static/media/BKlogo.c5cdd99f8cfcf6e214a2.png",
     "static/media/fossgcee-thumbnail.png": "/static/media/fossgcee-thumbnail.79ba67c503c931f28bfe.png",
     "static/media/linux-health-monitor-thumbnail.png": "/static/media/linux-health-monitor-thumbnail.086f8fbd5fddc41780b9.png",
     "static/media/profile-picture.jpg": "/static/media/profile-picture.2005dac948451a52b9bf.jpg",
     "index.html": "/index.html",
-    "main.c2cd06b4.css.map": "/static/css/main.c2cd06b4.css.map",
-    "main.fae3547d.js.map": "/static/js/main.fae3547d.js.map",
+    "main.0fb290b8.css.map": "/static/css/main.0fb290b8.css.map",
+    "main.61dcf305.js.map": "/static/js/main.61dcf305.js.map",
     "453.4e9befeb.chunk.js.map": "/static/js/453.4e9befeb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c2cd06b4.css",
-    "static/js/main.fae3547d.js"
+    "static/css/main.0fb290b8.css",
+    "static/js/main.61dcf305.js"
   ]
 }

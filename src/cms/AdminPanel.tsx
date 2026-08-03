@@ -7,14 +7,14 @@ import LiquidEther from '../components/LiquidEther';
 type Tab = 'hero' | 'about' | 'skills' | 'projects' | 'experience' | 'contact' | 'footer' | 'seo';
 
 const TAB_META: { id: Tab; label: string; icon: string }[] = [
-  { id: 'hero',       label: 'Hero',                icon: '🏠' },
-  { id: 'about',      label: 'About',               icon: '👤' },
-  { id: 'skills',     label: 'Skills',              icon: '🛠' },
-  { id: 'projects',   label: 'Projects',            icon: '📁' },
-  { id: 'experience', label: 'Experience',          icon: '💼' },
-  { id: 'contact',    label: 'Contact',             icon: '📬' },
-  { id: 'footer',     label: 'Footer & Nav',        icon: '🔗' },
-  { id: 'seo',        label: 'SEO / Meta',          icon: '🔍' },
+  { id: 'hero',       label: 'Hero',                icon: '' },
+  { id: 'about',      label: 'About',               icon: '' },
+  { id: 'skills',     label: 'Skills',              icon: '' },
+  { id: 'projects',   label: 'Projects',            icon: '' },
+  { id: 'experience', label: 'Experience',          icon: '' },
+  { id: 'contact',    label: 'Contact',             icon: '' },
+  { id: 'footer',     label: 'Footer & Nav',        icon: '' },
+  { id: 'seo',        label: 'SEO / Meta',          icon: '' },
 ];
 
 /* ─── Shared input styles (forced dark theme) ───────────────── */
