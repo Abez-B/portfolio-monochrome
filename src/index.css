@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -16,9 +16,8 @@ html {
   overflow-x: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+code, .font-mono {
+  font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
 }
 
 /* ── Glassmorphism design tokens ──────────────────────────────── */
@@ -44,7 +43,7 @@ code {
   --glass-text: #f0f0f0;
   --glass-text-muted: #aaaaaa;
   --glass-tag-bg: rgba(255, 255, 255, 0.08);
-  --glass-tag-text: #e5e5e5;
+  --glass-tag-text: #dddddd;
   --glass-btn-border: rgba(255, 255, 255, 0.20);
 }
 
