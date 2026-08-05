@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FloatingActionIsland } from './components/FloatingActionIsland';
+import { FloatingAccessibilityButton } from './components/FloatingAccessibilityButton';
 import LiquidEther from './components/LiquidEther';
 import { ThemeContext } from './context/ThemeContext';
 import { useCMS } from './cms/CMSContext';
@@ -126,6 +127,7 @@ const MainPortfolio: React.FC = () => {
 
       <Footer />
       <FloatingActionIsland />
+      <FloatingAccessibilityButton />
     </div>
   );
 };
