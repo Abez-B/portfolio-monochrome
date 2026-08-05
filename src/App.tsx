@@ -74,23 +74,25 @@ const MainPortfolio: React.FC = () => {
     <div className="text-black dark:text-white font-sans transition-colors duration-300 min-h-screen relative z-0 flex flex-col justify-between">
       <ScrollToTop />
       
-      {/* Background Liquid Simulation */}
+      {/* Background Liquid Simulation (Disabled on mobile for performance) */}
       <div className="fixed inset-0 z-0 pointer-events-none bg-white dark:bg-black">
-        <LiquidEther
-          key={theme}
-          mouseForce={isMobile ? 12 : 18}
-          cursorSize={isMobile ? 60 : 90}
-          isViscous={false}
-          viscous={25}
-          iterationsPoisson={isMobile ? 2 : 14}
-          iterationsViscous={isMobile ? 2 : 14}
-          colors={liquidColors}
-          autoDemo
-          autoSpeed={isMobile ? 0.3 : 0.45}
-          autoIntensity={theme === 'dark' ? (isMobile ? 2.5 : 3.2) : (isMobile ? 1.5 : 2.0)}
-          isBounce={false}
-          resolution={isMobile ? 0.08 : 0.25}
-        />
+        {!isMobile && (
+          <LiquidEther
+            key={theme}
+            mouseForce={18}
+            cursorSize={90}
+            isViscous={false}
+            viscous={25}
+            iterationsPoisson={14}
+            iterationsViscous={14}
+            colors={liquidColors}
+            autoDemo
+            autoSpeed={0.45}
+            autoIntensity={theme === 'dark' ? 3.2 : 2.0}
+            isBounce={false}
+            resolution={0.25}
+          />
+        )}
       </div>
 
       <Helmet>
