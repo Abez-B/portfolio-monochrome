@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import bkLogo from '../../assets/images/BKlogo.png';
 import { ThemeToggle } from '../ThemeToggle';
+import { useCMS } from '../../cms/CMSContext';
 
 interface HeaderProps {
   mobileMenuOpen: boolean;
@@ -12,6 +13,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, closeMobileMenu, navLinks }) => {
+  const { cmsData } = useCMS();
   const [scrolled, setScrolled] = useState<boolean>(false);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -111,14 +113,16 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
           {/* Call to Action & Theme Toggle */}
           <div className="hidden md:flex items-center gap-3 shrink-0">
             <ThemeToggle />
-            <a
-              href="https://drive.google.com/file/d/1MwlG95bm4T963YPAS6rVrX8gYdeTDHah/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-1.5 px-4 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all duration-200 hover:scale-105 bg-black dark:bg-white text-white dark:text-black shadow-lg"
-            >
-              Resume
-            </a>
+            {cmsData.hero.resumeUrl && (
+              <a
+                href={cmsData.hero.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex shrink-0 items-center gap-1.5 px-4 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all duration-200 hover:scale-105 bg-black dark:bg-white text-white dark:text-black shadow-lg"
+              >
+                Resume
+              </a>
+            )}
           </div>
 
           {/* Mobile Hamburger Button */}

@@ -9,6 +9,7 @@ export const defaultCMSData: CMSData = {
     subtitle: 'Passionate about Open Source, Linux (5+ distros), Virtualization (KVM/QEMU), and Building Scalable Infrastructure.',
     ctaText: 'Explore My Work',
     ctaTarget: 'projects',
+    resumeUrl: 'https://drive.google.com/file/d/1MwlG95bm4T963YPAS6rVrX8gYdeTDHah/view?usp=sharing',
   },
   about: {
     bio1: "I'm Bharath Kumar P., a final-year B.Tech Information Technology student at Government College of Engineering, Erode (Anna University). I specialize in Linux systems administration, DevOps, network infrastructure, and open-source software.",

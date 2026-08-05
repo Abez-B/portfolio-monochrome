@@ -4,6 +4,7 @@ export interface HeroData {
   subtitle: string;
   ctaText: string;
   ctaTarget: string;
+  resumeUrl?: string;
 }
 
 export interface AboutSectionItem {

@@ -306,6 +306,7 @@ export const AdminPanel: React.FC = () => {
                     {field('hero', 'ctaText', 'CTA Button Text')}
                     {field('hero', 'ctaTarget', 'CTA Scroll Target ID')}
                   </div>
+                  {field('hero', 'resumeUrl', 'Resume URL (Optional)')}
                 </div>
               )}
 

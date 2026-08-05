@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
-import About from './components/About/About';
-import Projects from './components/Projects/Projects';
-import Skills from './components/Skills/Skills';
-import Experience from './components/Experience/Experience';
-import Contact from './components/Contact/Contact';
+import Footer from './components/Footer/Footer';
+
+const Hero = lazy(() => import('./components/Hero/Hero'));
+const About = lazy(() => import('./components/About/About'));
+const Projects = lazy(() => import('./components/Projects/Projects'));
+const Skills = lazy(() => import('./components/Skills/Skills'));
+const Experience = lazy(() => import('./components/Experience/Experience'));
+const Contact = lazy(() => import('./components/Contact/Contact'));
 import Footer from './components/Footer/Footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -15,7 +17,7 @@ import { FloatingActionIsland } from './components/FloatingActionIsland';
 import LiquidEther from './components/LiquidEther';
 import { ThemeContext } from './context/ThemeContext';
 import { useCMS } from './cms/CMSContext';
-import AdminPanel from './cms/AdminPanel';
+const AdminPanel = lazy(() => import('./cms/AdminPanel'));
 
 // ScrollToTop on route change
 const ScrollToTop: React.FC = () => {
@@ -81,14 +83,14 @@ const MainPortfolio: React.FC = () => {
           cursorSize={isMobile ? 60 : 90}
           isViscous={false}
           viscous={25}
-          iterationsPoisson={isMobile ? 8 : 14}
-          iterationsViscous={isMobile ? 8 : 14}
+          iterationsPoisson={isMobile ? 2 : 14}
+          iterationsViscous={isMobile ? 2 : 14}
           colors={liquidColors}
           autoDemo
           autoSpeed={isMobile ? 0.3 : 0.45}
           autoIntensity={theme === 'dark' ? (isMobile ? 2.5 : 3.2) : (isMobile ? 1.5 : 2.0)}
           isBounce={false}
-          resolution={isMobile ? 0.2 : 0.35}
+          resolution={isMobile ? 0.08 : 0.25}
         />
       </div>
 
@@ -109,14 +111,16 @@ const MainPortfolio: React.FC = () => {
       />
 
       <main className="pt-24 pb-12 relative z-10 flex-1 space-y-12 md:space-y-16">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <Suspense fallback={<div className="flex justify-center items-center h-64 text-gray-500 font-mono text-sm animate-pulse">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Suspense>
       </main>
 
       <Footer />
@@ -127,10 +131,12 @@ const MainPortfolio: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Routes>
-      <Route path="/admin" element={<AdminPanel />} />
-      <Route path="/*" element={<MainPortfolio />} />
-    </Routes>
+    <Suspense fallback={<div className="flex justify-center items-center h-screen bg-black text-white font-mono text-sm animate-pulse">Initializing...</div>}>
+      <Routes>
+        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/*" element={<MainPortfolio />} />
+      </Routes>
+    </Suspense>
   );
 };
 
