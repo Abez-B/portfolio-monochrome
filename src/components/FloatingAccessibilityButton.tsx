@@ -40,7 +40,7 @@ export const FloatingAccessibilityButton: React.FC = () => {
     return <Compass className="w-3.5 h-3.5" />;
   };
 
-  // Only include main navigation pages (No Admin, Theme, or Resume)
+  // Only include main navigation pages
   const navNodes: NavNode[] = [
     {
       id: 'home',
@@ -57,10 +57,18 @@ export const FloatingAccessibilityButton: React.FC = () => {
   ];
 
   const totalNodes = navNodes.length;
-  // Upward semi-circle fan angles (-170 deg to -10 deg)
-  const startAngle = -170 * (Math.PI / 180);
-  const endAngle = -10 * (Math.PI / 180);
-  const radius = 120; // 120px radius for compact non-overlapping layout
+  // Upward sunray semi-circle fan angles (-175 deg to -5 deg)
+  const startAngle = -175 * (Math.PI / 180);
+  const endAngle = -5 * (Math.PI / 180);
+
+  // Smooth Sunray Arc curve: side nodes at 120px, middle nodes gracefully arching to 138px
+  const getRadiusForIndex = (index: number) => {
+    if (totalNodes <= 1) return 125;
+    const progress = index / (totalNodes - 1);
+    const sineFactor = Math.sin(progress * Math.PI); // 0 at ends, 1 in the middle
+    return 120 + sineFactor * 18;
+  };
+  const maxRadius = 142;
 
   return (
     // Hidden on desktop (md:hidden), centered above the floating action island on mobile
@@ -81,20 +89,21 @@ export const FloatingAccessibilityButton: React.FC = () => {
         className="pointer-events-auto"
       >
         <div className="relative flex items-center justify-center">
-          {/* Connecting SVG Lines */}
+          {/* Sunray Connecting Lines */}
           <AnimatePresence>
             {isOpen && (
               <svg
                 className="absolute pointer-events-none z-0 overflow-visible"
-                style={{ width: radius * 2.4, height: radius * 2.4 }}
-                viewBox={`-${radius * 1.2} -${radius * 1.2} ${radius * 2.4} ${radius * 2.4}`}
+                style={{ width: maxRadius * 2.5, height: maxRadius * 2.5 }}
+                viewBox={`-${maxRadius * 1.25} -${maxRadius * 1.25} ${maxRadius * 2.5} ${maxRadius * 2.5}`}
               >
                 {navNodes.map((_, index) => {
                   const angle = totalNodes > 1
                     ? startAngle + (index / (totalNodes - 1)) * (endAngle - startAngle)
                     : startAngle;
-                  const x = radius * Math.cos(angle);
-                  const y = radius * Math.sin(angle);
+                  const nodeRadius = getRadiusForIndex(index);
+                  const x = nodeRadius * Math.cos(angle);
+                  const y = nodeRadius * Math.sin(angle);
                   return (
                     <motion.line
                       key={index}
@@ -117,7 +126,7 @@ export const FloatingAccessibilityButton: React.FC = () => {
             )}
           </AnimatePresence>
 
-          {/* Radial Child Subnodes */}
+          {/* Sunray Arc Radial Child Subnodes */}
           <AnimatePresence>
             {isOpen && (
               <>
@@ -125,8 +134,9 @@ export const FloatingAccessibilityButton: React.FC = () => {
                   const angle = totalNodes > 1
                     ? startAngle + (index / (totalNodes - 1)) * (endAngle - startAngle)
                     : startAngle;
-                  const targetX = radius * Math.cos(angle);
-                  const targetY = radius * Math.sin(angle);
+                  const nodeRadius = getRadiusForIndex(index);
+                  const targetX = nodeRadius * Math.cos(angle);
+                  const targetY = nodeRadius * Math.sin(angle);
 
                   return (
                     <motion.div
@@ -146,15 +156,15 @@ export const FloatingAccessibilityButton: React.FC = () => {
                         to={node.to}
                         onClick={() => setIsOpen(false)}
                         className={({ isActive }) =>
-                          `flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/95 dark:bg-black/90 text-black dark:text-white backdrop-blur-xl shadow-lg border border-black/15 dark:border-white/20 transition-all duration-200 hover:scale-110 active:scale-95 ${
+                          `flex items-center gap-1.5 px-2 py-1 rounded-full bg-white/95 dark:bg-black/90 text-black dark:text-white backdrop-blur-xl shadow-lg border border-black/15 dark:border-white/20 transition-all duration-200 hover:scale-110 active:scale-95 ${
                             isActive ? 'ring-2 ring-emerald-500 font-bold bg-emerald-500/10' : ''
                           }`
                         }
                       >
-                        <span className="p-1 rounded-full bg-black/5 dark:bg-white/10 shrink-0">
+                        <span className="p-0.5 rounded-full bg-black/5 dark:bg-white/10 shrink-0">
                           {node.icon}
                         </span>
-                        <span className="font-mono text-[11px] font-semibold tracking-tight pr-1 whitespace-nowrap">
+                        <span className="font-mono text-[10px] font-bold tracking-tight pr-1 whitespace-nowrap">
                           {node.label}
                         </span>
                       </NavLink>

@@ -239,10 +239,10 @@ export const AdminPanel: React.FC = () => {
 
         {/* Sidebar */}
         <aside className={`
-          fixed md:relative top-0 left-0 h-full z-30 md:z-auto
-          w-64 shrink-0 flex flex-col py-6 px-3
-          glass-card rounded-none md:rounded-none border-r border-white/10
-          transition-transform duration-300
+          fixed md:relative top-0 left-0 h-full z-40 md:z-auto
+          w-72 sm:w-64 shrink-0 flex flex-col py-6 px-3
+          bg-black/95 backdrop-blur-2xl border-r border-white/10
+          transition-transform duration-300 shadow-2xl
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}>
           {/* Logo */}
@@ -308,16 +308,16 @@ export const AdminPanel: React.FC = () => {
           </header>
 
           {/* Scrollable content */}
-          <div className="flex-1 overflow-y-auto p-6 md:p-8">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8">
             <div className="max-w-2xl mx-auto">
 
               {/* ── HERO ── */}
               {tab === 'hero' && (
-                <div className="glass-card p-6">
+                <div className="glass-card p-4 sm:p-6">
                   {field('hero', 'name', 'Full Name')}
                   {field('hero', 'title', 'Job Title / Heading')}
                   {field('hero', 'subtitle', 'Subtitle / Description', true, 3)}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {field('hero', 'ctaText', 'CTA Button Text')}
                     {field('hero', 'ctaTarget', 'CTA Scroll Target ID')}
                   </div>
@@ -416,7 +416,7 @@ export const AdminPanel: React.FC = () => {
                     />
 
                     <SectionHeading>Discord</SectionHeading>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {field('contact', 'discordHandle', 'Handle (e.g. .abhrams)')}
                       {field('contact', 'discordUrl', 'Profile URL')}
                     </div>
@@ -428,7 +428,7 @@ export const AdminPanel: React.FC = () => {
                     />
 
                     <SectionHeading>WhatsApp</SectionHeading>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {field('contact', 'whatsappNumber', 'Number (no +, e.g. 916379478168)')}
                       {field('contact', 'whatsappDisplay', 'Display Text (e.g. +91 63794 78168)')}
                     </div>
@@ -440,7 +440,7 @@ export const AdminPanel: React.FC = () => {
                     />
 
                     <SectionHeading>LinkedIn</SectionHeading>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {field('contact', 'linkedinHandle', 'Handle')}
                       {field('contact', 'linkedinUrl', 'Profile URL')}
                     </div>
@@ -470,7 +470,7 @@ export const AdminPanel: React.FC = () => {
                               ✕ Remove
                             </button>
                           </div>
-                          <div className="grid grid-cols-2 gap-3">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <Field
                               label="Title (e.g. Telegram, Matrix)"
                               value={c.title}
@@ -669,7 +669,7 @@ export const AdminPanel: React.FC = () => {
                         <span className="text-xs font-bold uppercase tracking-widest text-white/40">Entry {i + 1}</span>
                         <Pill variant="danger" onClick={() => setLocal((p) => ({ ...p, experience: p.experience.filter((_, idx) => idx !== i) }))}>✕ Remove</Pill>
                       </div>
-                      <div className="grid grid-cols-2 gap-3 mb-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                         <Field label="Date" value={exp.date} onChange={(v) => setLocal((p) => ({ ...p, experience: p.experience.map((e, idx) => idx === i ? { ...e, date: v } : e) }))} />
                         <Field label="Job Title" value={exp.title} onChange={(v) => setLocal((p) => ({ ...p, experience: p.experience.map((e, idx) => idx === i ? { ...e, title: v } : e) }))} />
                       </div>
@@ -688,7 +688,7 @@ export const AdminPanel: React.FC = () => {
                         <span className="text-xs font-bold uppercase tracking-widest text-white/40">Entry {i + 1}</span>
                         <Pill variant="danger" onClick={() => setLocal((p) => ({ ...p, education: p.education.filter((_, idx) => idx !== i) }))}>✕ Remove</Pill>
                       </div>
-                      <div className="grid grid-cols-2 gap-3 mb-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                         <Field label="Date" value={edu.date} onChange={(v) => setLocal((p) => ({ ...p, education: p.education.map((e, idx) => idx === i ? { ...e, date: v } : e) }))} />
                         <Field label="Degree Title" value={edu.title} onChange={(v) => setLocal((p) => ({ ...p, education: p.education.map((e, idx) => idx === i ? { ...e, title: v } : e) }))} />
                       </div>
@@ -723,7 +723,7 @@ export const AdminPanel: React.FC = () => {
                         </div>
                       </summary>
                       <div className="px-5 pb-5 border-t border-white/10 pt-4 space-y-1">
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           <Field label="Title" value={proj.title} onChange={(v) => setLocal((p) => ({ ...p, projects: p.projects.map((pr, idx) => idx === i ? { ...pr, title: v } : pr) }))} />
                           <Field label="Category" value={proj.category} onChange={(v) => setLocal((p) => ({ ...p, projects: p.projects.map((pr, idx) => idx === i ? { ...pr, category: v } : pr) }))} />
                         </div>
@@ -731,7 +731,7 @@ export const AdminPanel: React.FC = () => {
                         <Field label="Technologies (comma separated)" value={proj.technologies.join(', ')}
                           onChange={(v) => setLocal((p) => ({ ...p, projects: p.projects.map((pr, idx) => idx === i ? { ...pr, technologies: v.split(',').map(s => s.trim()).filter(Boolean) } : pr) }))}
                         />
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           <Field label="Live Demo URL" value={proj.liveDemo} onChange={(v) => setLocal((p) => ({ ...p, projects: p.projects.map((pr, idx) => idx === i ? { ...pr, liveDemo: v } : pr) }))} />
                           <Field label="GitHub URL" value={proj.githubRepo} onChange={(v) => setLocal((p) => ({ ...p, projects: p.projects.map((pr, idx) => idx === i ? { ...pr, githubRepo: v } : pr) }))} />
                         </div>
