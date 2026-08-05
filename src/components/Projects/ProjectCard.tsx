@@ -16,10 +16,16 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="glass-card p-6 flex flex-col h-full hover:scale-[1.01] transition-all duration-300" data-aos="fade-up">
+    <div className="glass-card p-6 flex flex-col h-full hover:scale-[1.01] transition-all duration-300">
       <img
         src={project.thumbnail}
         alt={`${project.title} thumbnail`}
+        loading="lazy"
+        decoding="async"
+        onError={(e) => {
+          const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="%23111827"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23ffffff" font-family="sans-serif" font-size="22" font-weight="bold">${encodeURIComponent(project.title)}</text></svg>`;
+          (e.currentTarget as HTMLImageElement).src = `data:image/svg+xml;utf8,${svg}`;
+        }}
         className="w-full h-48 object-cover rounded-md mb-4 grayscale hover:grayscale-0 transition-all duration-500"
       />
       <h3 className="text-black dark:text-white text-xl font-bold mb-2">{project.title}</h3>

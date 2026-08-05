@@ -112,7 +112,7 @@ const MainPortfolio: React.FC = () => {
         navLinks={cmsData.navLinks}
       />
 
-      <main className="pt-24 pb-12 relative z-10 flex-1 space-y-12 md:space-y-16">
+      <main className="pt-20 pb-8 relative z-10 flex-1 space-y-6 md:space-y-8">
         <Suspense fallback={<div className="flex justify-center items-center h-64 text-gray-500 font-mono text-sm animate-pulse">Loading...</div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />

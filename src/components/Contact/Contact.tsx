@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { QRCodeSVG } from 'qrcode.react';
 import { useCMS } from '../../cms/CMSContext';
@@ -10,6 +11,34 @@ interface ContactPlatformItem {
   url: string;
   qrCodeUrl?: string;
 }
+
+const QRCodeDisplay: React.FC<{ url: string; qrCodeUrl?: string; title: string }> = ({ url, qrCodeUrl, title }) => {
+  const [imgError, setImgError] = useState(false);
+  const targetUrl = url && url !== '#' ? url : 'https://bharath.is-cool.dev';
+
+  return (
+    <div className="bg-white p-2 rounded-lg shadow-sm border border-gray-200 inline-block transition-transform hover:scale-105">
+      {qrCodeUrl && !imgError ? (
+        <img
+          src={qrCodeUrl}
+          alt={`${title} QR Code`}
+          loading="lazy"
+          decoding="async"
+          onError={() => setImgError(true)}
+          className="w-20 h-20 sm:w-24 sm:h-24 object-contain"
+        />
+      ) : (
+        <QRCodeSVG
+          value={targetUrl}
+          size={84}
+          bgColor="#ffffff"
+          fgColor="#000000"
+          level="M"
+        />
+      )}
+    </div>
+  );
+};
 
 const Contact: React.FC = () => {
   const { cmsData } = useCMS();
@@ -98,10 +127,12 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section
+    <motion.section
       id="contact"
-      className="text-black dark:text-white py-12 md:py-16 px-4 relative"
-      data-aos="fade-up"
+      className="text-black dark:text-white py-6 md:py-8 px-4 relative z-10"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
     >
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
@@ -149,25 +180,13 @@ const Contact: React.FC = () => {
                     </span>
                   )}
 
-                  {/* Compact Inline QR Code (SVG generated client-side for 100% reliability) */}
+                  {/* Compact Inline QR Code with Automatic SVG Fallback */}
                   <div className="mt-auto pt-1 flex flex-col items-center">
-                    <div className="bg-white p-2 rounded-lg shadow-sm border border-gray-200 inline-block transition-transform hover:scale-105">
-                      {platform.qrCodeUrl ? (
-                        <img
-                          src={platform.qrCodeUrl}
-                          alt={`${platform.title} QR Code`}
-                          className="w-20 h-20 sm:w-24 sm:h-24 object-contain"
-                        />
-                      ) : (
-                        <QRCodeSVG
-                          value={platform.url}
-                          size={84}
-                          bgColor="#ffffff"
-                          fgColor="#000000"
-                          level="M"
-                        />
-                      )}
-                    </div>
+                    <QRCodeDisplay
+                      url={platform.url}
+                      qrCodeUrl={platform.qrCodeUrl}
+                      title={platform.title}
+                    />
                     <span className="text-[9px] text-gray-400 dark:text-gray-500 mt-1.5 font-medium">
                       Scan for {platform.title}
                     </span>
@@ -257,7 +276,7 @@ const Contact: React.FC = () => {
           )}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

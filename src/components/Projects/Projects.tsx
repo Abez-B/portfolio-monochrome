@@ -27,7 +27,7 @@ const Projects: React.FC = () => {
   const categories = ['All', ...Array.from(new Set(projects.map(p => p.category)))];
 
   return (
-    <section id="projects" className="text-black dark:text-white py-12 md:py-16 px-4" data-aos="fade-up">
+    <section id="projects" className="text-black dark:text-white py-6 md:py-8 px-4 relative z-10">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12">My Projects</h2>
         <div className="flex justify-center mb-6 sm:mb-8 flex-wrap gap-2">

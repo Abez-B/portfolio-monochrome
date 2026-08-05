@@ -14,7 +14,7 @@ const Skills: React.FC = () => {
   const { cmsData } = useCMS();
 
   return (
-    <section id="skills" className="text-black dark:text-white py-12 md:py-16 px-4 relative z-10" data-aos="fade-up">
+    <section id="skills" className="text-black dark:text-white py-6 md:py-8 px-4 relative z-10">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-3">Technical Toolkit</h2>

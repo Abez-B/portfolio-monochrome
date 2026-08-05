@@ -6,7 +6,7 @@ const About: React.FC = () => {
   const { about } = cmsData;
 
   return (
-    <section id="about" className="text-black dark:text-white py-12 md:py-16 px-4 relative z-10" data-aos="fade-up">
+    <section id="about" className="text-black dark:text-white py-6 md:py-8 px-4 relative z-10">
       <div className="max-w-4xl mx-auto glass-card p-6 sm:p-10 shadow-2xl border border-white/20 dark:border-white/15">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-6 sm:mb-8 tracking-tight font-display">About Me</h2>
 
