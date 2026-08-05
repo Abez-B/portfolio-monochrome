@@ -3,6 +3,12 @@ import { Helmet } from 'react-helmet';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { FloatingActionIsland } from './components/FloatingActionIsland';
+import LiquidEther from './components/LiquidEther';
+import { ThemeContext } from './context/ThemeContext';
+import { useCMS } from './cms/CMSContext';
 
 const Hero = lazy(() => import('./components/Hero/Hero'));
 const About = lazy(() => import('./components/About/About'));
@@ -10,13 +16,6 @@ const Projects = lazy(() => import('./components/Projects/Projects'));
 const Skills = lazy(() => import('./components/Skills/Skills'));
 const Experience = lazy(() => import('./components/Experience/Experience'));
 const Contact = lazy(() => import('./components/Contact/Contact'));
-import Footer from './components/Footer/Footer';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { FloatingActionIsland } from './components/FloatingActionIsland';
-import LiquidEther from './components/LiquidEther';
-import { ThemeContext } from './context/ThemeContext';
-import { useCMS } from './cms/CMSContext';
 const AdminPanel = lazy(() => import('./cms/AdminPanel'));
 
 // ScrollToTop on route change
