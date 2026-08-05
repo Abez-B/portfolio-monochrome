@@ -89,6 +89,7 @@ const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
   const [pw, setPw] = useState('');
   const [shake, setShake] = useState(false);
   const liquidColors = ['#000000', '#ffffff', '#ffffff', '#e8e8e8', '#d0d0d0', '#aaaaaa'];
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const attempt = (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,12 +106,14 @@ const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
   return (
     <div className="dark min-h-screen relative flex items-center justify-center bg-black text-white">
       <div className="fixed inset-0 z-0 pointer-events-none bg-black">
-        <LiquidEther
-          mouseForce={20} cursorSize={80} isViscous={false}
-          colors={liquidColors} autoDemo autoSpeed={0.4}
-          autoIntensity={3.5}
-          isBounce={false} resolution={0.5}
-        />
+        {!isMobile && (
+          <LiquidEther
+            mouseForce={20} cursorSize={80} isViscous={false}
+            colors={liquidColors} autoDemo autoSpeed={0.4}
+            autoIntensity={3.5}
+            isBounce={false} resolution={0.5}
+          />
+        )}
       </div>
       <div className="relative z-10 w-full max-w-sm px-4">
         <form onSubmit={attempt}
@@ -155,6 +158,7 @@ export const AdminPanel: React.FC = () => {
 
   // Strictly Dark Mode Liquid Palette
   const liquidColors = ['#000000', '#ffffff', '#ffffff', '#e8e8e8', '#d0d0d0', '#aaaaaa'];
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const showToast = (msg: string, type: 'success' | 'info' = 'success') => {
     setToast({ msg, type });
@@ -205,12 +209,14 @@ export const AdminPanel: React.FC = () => {
     <div className="dark min-h-screen relative text-white bg-black">
       {/* Background - Always Dark Mode */}
       <div className="fixed inset-0 z-0 pointer-events-none bg-black">
-        <LiquidEther
-          mouseForce={15} cursorSize={80} isViscous={false}
-          colors={liquidColors} autoDemo autoSpeed={0.3}
-          autoIntensity={2.5}
-          isBounce={false} resolution={0.5}
-        />
+        {!isMobile && (
+          <LiquidEther
+            mouseForce={15} cursorSize={80} isViscous={false}
+            colors={liquidColors} autoDemo autoSpeed={0.3}
+            autoIntensity={2.5}
+            isBounce={false} resolution={0.5}
+          />
+        )}
       </div>
 
       {/* Toast */}

@@ -180,6 +180,21 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
                   </li>
                 );
               })}
+              <li className="pt-2 border-t border-black/10 dark:border-white/10 mt-1">
+                <NavLink
+                  to="/admin"
+                  onClick={closeMobileMenu}
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 font-mono text-xs py-2 px-3 rounded-lg transition-colors ${
+                      isActive
+                        ? "bg-black/10 dark:bg-white/15 text-black dark:text-white font-bold"
+                        : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
+                    }`
+                  }
+                >
+                  <span>⚙</span> Admin Studio
+                </NavLink>
+              </li>
             </ul>
           </div>
         )}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useCMS } from '../../cms/CMSContext';
 
 const Footer: React.FC = () => {
@@ -25,6 +26,12 @@ const Footer: React.FC = () => {
               {link.label}
             </a>
           ))}
+          <Link
+            to="/admin"
+            className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 hover:underline font-mono"
+          >
+            ⚙ Admin Studio
+          </Link>
         </div>
       </div>
     </footer>
