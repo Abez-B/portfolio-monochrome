@@ -4,6 +4,15 @@ import { useCMS } from './CMSContext';
 import { CMSData } from './types';
 import LiquidEther from '../components/LiquidEther';
 
+const convertDriveLink = (url: string) => {
+  if (!url) return url;
+  const match = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (match && match[1]) {
+    return `https://lh3.googleusercontent.com/d/${match[1]}`;
+  }
+  return url;
+};
+
 type Tab = 'hero' | 'about' | 'skills' | 'projects' | 'experience' | 'contact' | 'footer' | 'seo';
 
 const TAB_META: { id: Tab; label: string; icon: string }[] = [
@@ -720,7 +729,7 @@ export const AdminPanel: React.FC = () => {
                           <Field label="Live Demo URL" value={proj.liveDemo} onChange={(v) => setLocal((p) => ({ ...p, projects: p.projects.map((pr, idx) => idx === i ? { ...pr, liveDemo: v } : pr) }))} />
                           <Field label="GitHub URL" value={proj.githubRepo} onChange={(v) => setLocal((p) => ({ ...p, projects: p.projects.map((pr, idx) => idx === i ? { ...pr, githubRepo: v } : pr) }))} />
                         </div>
-                        <Field label="Thumbnail URL" value={proj.thumbnail} placeholder="https://..." onChange={(v) => setLocal((p) => ({ ...p, projects: p.projects.map((pr, idx) => idx === i ? { ...pr, thumbnail: v } : pr) }))} />
+                        <Field label="Thumbnail URL" value={proj.thumbnail} placeholder="https://..." onChange={(v) => setLocal((p) => ({ ...p, projects: p.projects.map((pr, idx) => idx === i ? { ...pr, thumbnail: convertDriveLink(v) } : pr) }))} />
                         {proj.thumbnail && (proj.thumbnail.startsWith('http') || proj.thumbnail.startsWith('data:')) && (
                           <img src={proj.thumbnail} alt="preview" className="h-20 rounded-lg object-cover opacity-80 mt-1" />
                         )}
