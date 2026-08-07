@@ -57,6 +57,7 @@ const Contact: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [emailErrorDetails, setEmailErrorDetails] = useState<string>('');
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,6 +65,7 @@ const Contact: React.FC = () => {
     if (!formRef.current) return;
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setEmailErrorDetails('');
 
     const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_qozywht';
     const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_NOTIFY || 'template_5jr93kg';
@@ -72,6 +74,7 @@ const Contact: React.FC = () => {
     if (!serviceId || !templateId || !publicKey) {
       console.error('EmailJS parameters are missing.');
       setSubmitStatus('error');
+      setEmailErrorDetails('EmailJS configuration keys missing');
       setIsSubmitting(false);
       return;
     }
@@ -87,6 +90,8 @@ const Contact: React.FC = () => {
         },
         (error) => {
           console.error('EmailJS send error:', error);
+          const details = typeof error === 'object' && error !== null ? (error.text || JSON.stringify(error)) : String(error);
+          setEmailErrorDetails(details);
           setSubmitStatus('error');
         }
       )
@@ -286,7 +291,9 @@ const Contact: React.FC = () => {
 
               {submitStatus === 'error' && (
                 <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-center space-y-2">
-                  <p className="text-red-400 text-xs font-semibold">Auto-mailer service unavailable or blocked.</p>
+                  <p className="text-red-400 text-xs font-semibold">
+                    Auto-mailer error{emailErrorDetails ? `: "${emailErrorDetails}"` : ' (blocked or service unavailable)'}
+                  </p>
                   <p className="text-gray-300 text-xs">Click below to send your pre-filled message via your email app:</p>
                   <a
                     href={`mailto:${contact.email}?subject=${encodeURIComponent(`Portfolio Contact from ${formData.name || 'Visitor'}`)}&body=${encodeURIComponent(`${formData.message}\n\n---\nFrom: ${formData.name} (${formData.email})`)}`}
