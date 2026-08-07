@@ -100,6 +100,8 @@ const Contact: React.FC = () => {
           message: formData.message,
           _subject: `New Portfolio Message from ${formData.name || 'Visitor'}`,
           _template: 'table',
+          _captcha: 'false',
+          _autoresponse: `Thank you for reaching out! I have received your message and will respond as soon as possible.\n\nBest regards,\nBharath Kumar J P\nhttps://bharath.is-cool.dev`,
         }),
       });
 
