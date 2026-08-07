@@ -59,7 +59,7 @@ const Contact: React.FC = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [emailErrorDetails, setEmailErrorDetails] = useState<string>('');
 
-  const sendEmail = (e: React.FormEvent) => {
+  const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formRef.current) return;
@@ -71,33 +71,54 @@ const Contact: React.FC = () => {
     const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_NOTIFY || 'template_5jr93kg';
     const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'WMOKkeQhT9qJCrKNy';
 
-    if (!serviceId || !templateId || !publicKey) {
-      console.error('EmailJS parameters are missing.');
-      setSubmitStatus('error');
-      setEmailErrorDetails('EmailJS configuration keys missing');
+    // Engine 1: EmailJS
+    try {
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS keys unconfigured');
+      }
+      await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      formRef.current?.reset();
       setIsSubmitting(false);
       return;
+    } catch (emailJsErr: any) {
+      console.warn('Primary mailer (EmailJS) failed. Switching to secondary FormSubmit engine...', emailJsErr);
     }
 
-    emailjs
-      .sendForm(serviceId, templateId, formRef.current, publicKey)
-      .then(
-        (result) => {
-          console.log(result.text);
-          setSubmitStatus('success');
-          setFormData({ name: '', email: '', message: '' });
-          formRef.current?.reset();
+    // Engine 2: Open-Source FormSubmit API (No API key / Dashboard required)
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${contact.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        (error) => {
-          console.error('EmailJS send error:', error);
-          const details = typeof error === 'object' && error !== null ? (error.text || JSON.stringify(error)) : String(error);
-          setEmailErrorDetails(details);
-          setSubmitStatus('error');
-        }
-      )
-      .finally(() => {
-        setIsSubmitting(false);
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New Portfolio Message from ${formData.name || 'Visitor'}`,
+          _template: 'table',
+        }),
       });
+
+      if (res.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        formRef.current?.reset();
+        setIsSubmitting(false);
+        return;
+      } else {
+        throw new Error(`FormSubmit HTTP ${res.status}`);
+      }
+    } catch (formSubmitErr: any) {
+      console.error('All automated mailer engines failed:', formSubmitErr);
+      setEmailErrorDetails(formSubmitErr?.message || 'Network blocked');
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Compile platforms list excluding any personal site
