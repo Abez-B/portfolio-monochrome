@@ -12,15 +12,25 @@ interface ContactPlatformItem {
   qrCodeUrl?: string;
 }
 
+const convertDriveLink = (url: string) => {
+  if (!url) return url;
+  const match = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (match && match[1]) {
+    return `https://lh3.googleusercontent.com/d/${match[1]}`;
+  }
+  return url;
+};
+
 const QRCodeDisplay: React.FC<{ url: string; qrCodeUrl?: string; title: string }> = ({ url, qrCodeUrl, title }) => {
   const [imgError, setImgError] = useState(false);
   const targetUrl = url && url !== '#' ? url : 'https://bharath.is-cool.dev';
+  const formattedQrUrl = qrCodeUrl ? convertDriveLink(qrCodeUrl) : undefined;
 
   return (
     <div className="bg-white p-2 rounded-lg shadow-sm border border-gray-200 inline-block transition-transform hover:scale-105">
-      {qrCodeUrl && !imgError ? (
+      {formattedQrUrl && !imgError ? (
         <img
-          src={qrCodeUrl}
+          src={formattedQrUrl}
           alt={`${title} QR Code`}
           loading="lazy"
           decoding="async"
@@ -54,12 +64,12 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || '';
-    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_NOTIFY || '';
-    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || '';
+    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_qozywht';
+    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_NOTIFY || 'template_5jr93kg';
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'WMOKkeQhT9qJCrKNy';
 
     if (!serviceId || !templateId || !publicKey) {
-      console.error('EmailJS environment variables are missing.');
+      console.error('EmailJS parameters are missing.');
       setSubmitStatus('error');
       setIsSubmitting(false);
       return;
@@ -262,7 +272,15 @@ const Contact: React.FC = () => {
               </div>
 
               {submitStatus === 'error' && (
-                <p className="text-red-400 text-xs font-medium">Failed to send message. Please check your connection or try again later.</p>
+                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-center space-y-1.5">
+                  <p className="text-red-400 text-xs font-medium">Failed to send message automatically.</p>
+                  <a
+                    href={`mailto:${contact.email}?subject=Portfolio Contact&body=Hi Bharath,`}
+                    className="inline-block text-xs font-bold text-white underline hover:text-blue-300"
+                  >
+                    Click to open your mail app ({contact.email})
+                  </a>
+                </div>
               )}
 
               <button

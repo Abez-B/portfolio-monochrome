@@ -412,7 +412,7 @@ export const AdminPanel: React.FC = () => {
                       label="Email QR Code Image/Data URL (Optional)"
                       value={local.contact.emailQrCode || ''}
                       placeholder="Leave blank to auto-generate QR code"
-                      onChange={(v) => upSection('contact', 'emailQrCode', v)}
+                      onChange={(v) => upSection('contact', 'emailQrCode', convertDriveLink(v))}
                     />
 
                     <SectionHeading>Discord</SectionHeading>
@@ -424,7 +424,7 @@ export const AdminPanel: React.FC = () => {
                       label="Discord QR Code Image/Data URL (Optional)"
                       value={local.contact.discordQrCode || ''}
                       placeholder="Leave blank to auto-generate QR code"
-                      onChange={(v) => upSection('contact', 'discordQrCode', v)}
+                      onChange={(v) => upSection('contact', 'discordQrCode', convertDriveLink(v))}
                     />
 
                     <SectionHeading>WhatsApp</SectionHeading>
@@ -436,7 +436,7 @@ export const AdminPanel: React.FC = () => {
                       label="WhatsApp QR Code Image/Data URL (Optional)"
                       value={local.contact.whatsappQrCode || ''}
                       placeholder="Leave blank to auto-generate QR code"
-                      onChange={(v) => upSection('contact', 'whatsappQrCode', v)}
+                      onChange={(v) => upSection('contact', 'whatsappQrCode', convertDriveLink(v))}
                     />
 
                     <SectionHeading>LinkedIn</SectionHeading>
@@ -448,7 +448,7 @@ export const AdminPanel: React.FC = () => {
                       label="LinkedIn QR Code Image/Data URL (Optional)"
                       value={local.contact.linkedinQrCode || ''}
                       placeholder="Leave blank to auto-generate QR code"
-                      onChange={(v) => upSection('contact', 'linkedinQrCode', v)}
+                      onChange={(v) => upSection('contact', 'linkedinQrCode', convertDriveLink(v))}
                     />
                   </div>
 
@@ -521,8 +521,6 @@ export const AdminPanel: React.FC = () => {
                   </div>
                 </div>
               )}
-
-              {/* ── SEO ── */}
               {tab === 'seo' && (
                 <div className="glass-card p-6">
                   {field('meta', 'siteTitle', 'Browser Tab Title')}
@@ -534,58 +532,87 @@ export const AdminPanel: React.FC = () => {
               {/* ── FOOTER & NAV ── */}
               {tab === 'footer' && (
                 <div className="space-y-4">
-                  <div className="glass-card p-6">
-                    <SectionHeading>Footer</SectionHeading>
+                  <div className="glass-card p-4 sm:p-6">
+                    <SectionHeading>Footer Settings & Social Links</SectionHeading>
                     {field('footer', 'ownerName', 'Owner Name')}
-                    <label className={labelCls}>Social Links</label>
-                    <div className="space-y-2 mb-3">
+                    
+                    <label className={labelCls + ' mt-4 block'}>Social Links</label>
+                    <div className="space-y-3 mb-4">
                       {local.footer.socialLinks.map((link, i) => (
-                        <div key={i} className="flex gap-2 items-center">
-                          <input value={link.label} placeholder="Label"
-                            onChange={(e) => {
-                              const arr = local.footer.socialLinks.map((l, idx) => idx === i ? { ...l, label: e.target.value } : l);
-                              upSection('footer', 'socialLinks', arr);
-                            }}
-                            className={inputCls + ' w-28 shrink-0'}
-                          />
-                          <input value={link.url} placeholder="URL"
-                            onChange={(e) => {
-                              const arr = local.footer.socialLinks.map((l, idx) => idx === i ? { ...l, url: e.target.value } : l);
-                              upSection('footer', 'socialLinks', arr);
-                            }}
-                            className={inputCls}
-                          />
-                          <Pill variant="danger" onClick={() => upSection('footer', 'socialLinks', local.footer.socialLinks.filter((_, idx) => idx !== i))}>✕</Pill>
+                        <div key={i} className="p-3.5 border border-white/10 rounded-lg bg-white/5 space-y-2">
+                          <div className="flex justify-between items-center">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-white/40">Social Link {i + 1}</span>
+                            <Pill variant="danger" onClick={() => upSection('footer', 'socialLinks', local.footer.socialLinks.filter((_, idx) => idx !== i))}>✕ Remove</Pill>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                            <input
+                              value={link.label}
+                              placeholder="Label (e.g. GitHub)"
+                              onChange={(e) => {
+                                const arr = local.footer.socialLinks.map((l, idx) => idx === i ? { ...l, label: e.target.value } : l);
+                                upSection('footer', 'socialLinks', arr);
+                              }}
+                              className={inputCls + ' sm:col-span-1'}
+                            />
+                            <input
+                              value={link.url}
+                              placeholder="URL (https://...)"
+                              onChange={(e) => {
+                                const arr = local.footer.socialLinks.map((l, idx) => idx === i ? { ...l, url: convertDriveLink(e.target.value) } : l);
+                                upSection('footer', 'socialLinks', arr);
+                              }}
+                              className={inputCls + ' sm:col-span-2'}
+                            />
+                          </div>
                         </div>
                       ))}
                     </div>
-                    <Pill variant="subtle" onClick={() => upSection('footer', 'socialLinks', [...local.footer.socialLinks, { label: '', url: '' }])}>+ Add Link</Pill>
+                    <button
+                      onClick={() => upSection('footer', 'socialLinks', [...local.footer.socialLinks, { label: '', url: '' }])}
+                      className="w-full py-3 rounded-lg border border-dashed border-white/20 text-xs font-semibold text-white/60 hover:text-white transition-colors"
+                    >
+                      + Add Social Link
+                    </button>
                   </div>
 
-                  <div className="glass-card p-6">
-                    <SectionHeading>Navigation</SectionHeading>
-                    <div className="space-y-2 mb-3">
+                  <div className="glass-card p-4 sm:p-6">
+                    <SectionHeading>Navigation Links</SectionHeading>
+                    <div className="space-y-3 mb-4">
                       {local.navLinks.map((link, i) => (
-                        <div key={i} className="flex gap-2 items-center">
-                          <input value={link.name} placeholder="Label"
-                            onChange={(e) => {
-                              const arr = local.navLinks.map((l, idx) => idx === i ? { ...l, name: e.target.value } : l);
-                              setLocal((p) => ({ ...p, navLinks: arr }));
-                            }}
-                            className={inputCls + ' w-28 shrink-0'}
-                          />
-                          <input value={link.to} placeholder="Section ID"
-                            onChange={(e) => {
-                              const arr = local.navLinks.map((l, idx) => idx === i ? { ...l, to: e.target.value } : l);
-                              setLocal((p) => ({ ...p, navLinks: arr }));
-                            }}
-                            className={inputCls}
-                          />
-                          <Pill variant="danger" onClick={() => setLocal((p) => ({ ...p, navLinks: p.navLinks.filter((_, idx) => idx !== i) }))}>✕</Pill>
+                        <div key={i} className="p-3.5 border border-white/10 rounded-lg bg-white/5 space-y-2">
+                          <div className="flex justify-between items-center">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-white/40">Nav Item {i + 1}</span>
+                            <Pill variant="danger" onClick={() => setLocal((p) => ({ ...p, navLinks: p.navLinks.filter((_, idx) => idx !== i) }))}>✕ Remove</Pill>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                            <input
+                              value={link.name}
+                              placeholder="Label (e.g. Projects)"
+                              onChange={(e) => {
+                                const arr = local.navLinks.map((l, idx) => idx === i ? { ...l, name: e.target.value } : l);
+                                setLocal((p) => ({ ...p, navLinks: arr }));
+                              }}
+                              className={inputCls + ' sm:col-span-1'}
+                            />
+                            <input
+                              value={link.to}
+                              placeholder="Target Section ID (e.g. projects)"
+                              onChange={(e) => {
+                                const arr = local.navLinks.map((l, idx) => idx === i ? { ...l, to: e.target.value } : l);
+                                setLocal((p) => ({ ...p, navLinks: arr }));
+                              }}
+                              className={inputCls + ' sm:col-span-2'}
+                            />
+                          </div>
                         </div>
                       ))}
                     </div>
-                    <Pill variant="subtle" onClick={() => setLocal((p) => ({ ...p, navLinks: [...p.navLinks, { name: '', to: '' }] }))}>+ Add Link</Pill>
+                    <button
+                      onClick={() => setLocal((p) => ({ ...p, navLinks: [...p.navLinks, { name: '', to: '' }] }))}
+                      className="w-full py-3 rounded-lg border border-dashed border-white/20 text-xs font-semibold text-white/60 hover:text-white transition-colors"
+                    >
+                      + Add Navigation Link
+                    </button>
                   </div>
                 </div>
               )}
