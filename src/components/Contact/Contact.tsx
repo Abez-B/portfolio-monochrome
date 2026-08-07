@@ -54,6 +54,7 @@ const Contact: React.FC = () => {
   const { cmsData } = useCMS();
   const { contact } = cmsData;
   const formRef = useRef<HTMLFormElement>(null);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -81,10 +82,11 @@ const Contact: React.FC = () => {
         (result) => {
           console.log(result.text);
           setSubmitStatus('success');
+          setFormData({ name: '', email: '', message: '' });
           formRef.current?.reset();
         },
         (error) => {
-          console.error(error.text);
+          console.error('EmailJS send error:', error);
           setSubmitStatus('error');
         }
       )
@@ -229,6 +231,11 @@ const Contact: React.FC = () => {
             </div>
           ) : (
             <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
+              {/* Hidden EmailJS field aliases for template compatibility */}
+              <input type="hidden" name="to_name" value="Bharath" />
+              <input type="hidden" name="from_name" value={formData.name} />
+              <input type="hidden" name="from_email" value={formData.email} />
+
               <div>
                 <label htmlFor="user_name" className="block text-[11px] font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1">
                   Your Name
@@ -238,6 +245,8 @@ const Contact: React.FC = () => {
                   name="user_name"
                   id="user_name"
                   required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full bg-white/10 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-black/30 dark:focus:ring-white/30 text-black dark:text-white placeholder-gray-400 text-xs sm:text-sm transition-all"
                   placeholder="John Doe"
                 />
@@ -252,6 +261,8 @@ const Contact: React.FC = () => {
                   name="user_email"
                   id="user_email"
                   required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full bg-white/10 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-black/30 dark:focus:ring-white/30 text-black dark:text-white placeholder-gray-400 text-xs sm:text-sm transition-all"
                   placeholder="john@example.com"
                 />
@@ -266,19 +277,22 @@ const Contact: React.FC = () => {
                   id="message"
                   required
                   rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full bg-white/10 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-black/30 dark:focus:ring-white/30 text-black dark:text-white placeholder-gray-400 text-xs sm:text-sm transition-all resize-none"
                   placeholder={`Hello ${contact.linkedinHandle.split('-')[0]}, I would like to talk about...`}
                 ></textarea>
               </div>
 
               {submitStatus === 'error' && (
-                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-center space-y-1.5">
-                  <p className="text-red-400 text-xs font-medium">Failed to send message automatically.</p>
+                <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-center space-y-2">
+                  <p className="text-red-400 text-xs font-semibold">Auto-mailer service unavailable or blocked.</p>
+                  <p className="text-gray-300 text-xs">Click below to send your pre-filled message via your email app:</p>
                   <a
-                    href={`mailto:${contact.email}?subject=Portfolio Contact&body=Hi Bharath,`}
-                    className="inline-block text-xs font-bold text-white underline hover:text-blue-300"
+                    href={`mailto:${contact.email}?subject=${encodeURIComponent(`Portfolio Contact from ${formData.name || 'Visitor'}`)}&body=${encodeURIComponent(`${formData.message}\n\n---\nFrom: ${formData.name} (${formData.email})`)}`}
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-red-500/20 hover:bg-red-500/30 text-white rounded-lg font-bold text-xs border border-red-500/40 transition-all cursor-pointer"
                   >
-                    Click to open your mail app ({contact.email})
+                    ✉️ Send Pre-filled Email to {contact.email}
                   </a>
                 </div>
               )}
