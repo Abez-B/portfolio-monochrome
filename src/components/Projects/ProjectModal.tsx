@@ -63,7 +63,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
             <span className="text-[11px] font-extrabold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-1.5 block">
               {project.category}
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4 pr-10">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4 pr-10 break-words">
               {project.title}
             </h2>
 
@@ -75,7 +75,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
               />
             )}
 
-            <p className="text-sm sm:text-base leading-relaxed text-gray-700 dark:text-gray-300 mb-6 font-normal">
+            <p className="text-sm sm:text-base leading-relaxed text-gray-700 dark:text-gray-300 mb-6 font-normal text-balance">
               {project.description}
             </p>
 

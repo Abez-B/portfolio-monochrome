@@ -10,11 +10,11 @@ const About: React.FC = () => {
       <div className="max-w-4xl mx-auto glass-card p-6 sm:p-10 shadow-2xl border border-white/20 dark:border-white/15">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-6 sm:mb-8 tracking-tight font-display">About Me</h2>
 
-        <p className="text-gray-700 dark:text-gray-300 text-base sm:text-xl leading-relaxed mb-5 sm:mb-6 font-medium">
+        <p className="text-gray-700 dark:text-gray-300 text-base sm:text-xl leading-relaxed mb-5 sm:mb-6 font-medium text-balance">
           {about.bio1}
         </p>
 
-        <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-lg leading-relaxed mb-6 sm:mb-8">
+        <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-lg leading-relaxed mb-6 sm:mb-8 text-balance">
           {about.bio2}
         </p>
 
@@ -24,7 +24,7 @@ const About: React.FC = () => {
             <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-black dark:text-white font-display">
               {about.fossgceeTitle}
             </h3>
-            <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed text-balance">
               {about.fossgceeDescription}{' '}
               {about.fossgceeLink && (
                 <a
@@ -50,7 +50,7 @@ const About: React.FC = () => {
             <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-black dark:text-white font-display">
               {about.systemsFocusTitle}
             </h3>
-            <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed text-balance">
               {about.systemsFocusDescription}
             </p>
           </div>
@@ -60,7 +60,7 @@ const About: React.FC = () => {
         {about.customSections && about.customSections.map((sec) => (
           <div key={sec.id} className="mb-6 glass-card p-5 sm:p-7 text-left border border-white/20 dark:border-white/10">
             <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-black dark:text-white font-display">{sec.title}</h3>
-            <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed text-balance">
               {sec.description}{' '}
               {sec.link && (
                 <a
@@ -81,7 +81,7 @@ const About: React.FC = () => {
         ))}
 
         <div className="pt-4 border-t border-white/10 text-center">
-          <p className="text-gray-800 dark:text-gray-200 text-sm sm:text-base font-semibold">
+          <p className="text-gray-800 dark:text-gray-200 text-sm sm:text-base font-semibold text-balance">
             <span className="text-gray-500 dark:text-gray-400 uppercase tracking-widest text-[11px] font-mono font-bold block mb-1">Engineering Mission</span>
             "{about.goal}"
           </p>

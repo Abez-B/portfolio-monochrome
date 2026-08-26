@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="text-black dark:text-white pt-8 pb-28 md:pb-10 px-4 text-center border-t border-white/10 dark:border-white/10 backdrop-blur-sm bg-white/5 dark:bg-white/5 relative z-10">
       <div className="max-w-4xl mx-auto">
-        <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm mb-4 font-medium">
+        <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm mb-4 font-medium text-balance">
           &copy; {new Date().getFullYear()} {footer.ownerName}. All rights reserved.
         </p>
         

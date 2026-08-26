@@ -28,8 +28,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         }}
         className="w-full h-48 object-cover rounded-md mb-4 grayscale hover:grayscale-0 transition-all duration-500"
       />
-      <h3 className="text-black dark:text-white text-xl font-bold mb-2">{project.title}</h3>
-      <p className="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">{project.description}</p>
+      <h3 className="text-black dark:text-white text-xl font-bold mb-2 break-words">{project.title}</h3>
+      <p className="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow text-balance">{project.description}</p>
       <div className="mb-4">
         <h4 className="text-black dark:text-white text-md font-semibold mb-2">Technologies:</h4>
         <ul className="flex flex-wrap gap-2">

@@ -6,20 +6,20 @@ export const defaultCMSData: CMSData = {
   hero: {
     name: 'Bharath Kumar P',
     title: 'Final Year IT Student | Systems & Network Engineer',
-    subtitle: 'Passionate about Open Source, Linux (5+ distros), Virtualization (KVM/QEMU), and Building Scalable Infrastructure.',
+    subtitle: 'Systems & Network Engineer | Full-Stack Developer — Linux, KVM/QEMU, Docker, CI/CD & Open Source.',
     ctaText: 'Explore My Work',
     ctaTarget: 'projects',
     resumeUrl: 'https://drive.google.com/file/d/1MwlG95bm4T963YPAS6rVrX8gYdeTDHah/view?usp=sharing',
   },
   about: {
-    bio1: "I'm Bharath Kumar P., a final-year B.Tech Information Technology student at Government College of Engineering, Erode (Anna University). I specialize in Linux systems administration, DevOps, network infrastructure, and open-source software.",
-    bio2: "From dual-boot Linux setups to KVM/QEMU virtualization and automated GitHub Actions pipelines, I thrive in self-directed, hands-on engineering environments where I learn directly from documentation, code review, and building real tools.",
+    bio1: "Final-year B.Tech Information Technology student at Government College of Engineering, Erode (Anna University) with 7.67 CGPA. Core coursework in Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, and OOP. I build real projects from scratch, ship across the full stack, and learn directly from documentation and code review.",
+    bio2: "Hands-on Linux systems administrator with experience across 5+ distros. Skilled in network infrastructure, KVM/QEMU/libvirt virtualization, Docker containerization, and CI/CD pipelines with GitHub Actions. Proficient in JavaScript (ES6+), TypeScript, Python, C, SQL, and Solidity. Web stack includes React.js, Next.js, Node.js, Express.js, GraphQL, REST APIs, JWT, and OAuth 2.0. I debug from documentation, not AI.",
     fossgceeTitle: "🐧 Founder & Lead — FOSS Club, GCE Erode",
-    fossgceeDescription: "Built and led an open-source developer community from scratch; ran workshops on Linux, Git, KVM virtualization, and web development. Deployed club infrastructure with Docker, Nginx, and CI/CD on cloud VMs.",
+    fossgceeDescription: "Built and led open-source developer community from scratch; ran workshops on Linux, Git, KVM virtualization, and web dev — entirely self-taught and peer-driven, no live instruction. Deployed club infrastructure with Docker, Nginx reverse proxy, and GitHub Actions CI/CD on a cloud VM; actively learning open source contribution practices.",
     fossgceeLink: "https://fossgcee.vercel.app",
-    systemsFocusTitle: "Systems, DevOps & Open Source Focus",
-    systemsFocusDescription: "Hands-on experience with KVM/QEMU/libvirt, Docker, Nginx, Bash, GitHub Actions (CI/CD), AWS EC2/S3, Zabbix, Qt6/CMake, and C++. I build real projects from scratch and debug without AI.",
-    goal: "Build secure, scalable infrastructure and contribute to impactful open-source Linux software."
+    systemsFocusTitle: "Systems & Networking Focus",
+    systemsFocusDescription: "KVM/QEMU/libvirt virtualization, Docker, Nginx, Bash, GitHub Actions CI/CD, AWS EC2/S3, Zabbix monitoring, Linux system administration (5+ distros), and network infrastructure — built and debugged from scratch.",
+    goal: "Build secure, scalable systems infrastructure and contribute to impactful open-source Linux software — the self-directed, craft-first mindset that drives strong engineering teams."
   },
   skillCategories: [
     {
@@ -29,7 +29,7 @@ export const defaultCMSData: CMSData = {
         { name: "JavaScript (ES6+)" },
         { name: "TypeScript" },
         { name: "Python" },
-        { name: "C++" },
+        { name: "C" },
         { name: "SQL" },
         { name: "Solidity" },
         { name: "HTML5/CSS3" }
@@ -136,7 +136,7 @@ export const defaultCMSData: CMSData = {
       date: '2024 - Present',
       title: 'Founder & Lead — FOSS Club',
       company: 'Government College of Engineering, Erode (fossgcee.vercel.app)',
-      description: 'Built and led open-source developer community from scratch; ran workshops on Linux, Git, KVM virtualization, and web dev — entirely self-taught and peer-driven. Deployed club website with Docker, Nginx, and GitHub Actions CI/CD on a cloud VM.'
+      description: 'Built and led open-source developer community from scratch; ran workshops on Linux, Git, KVM virtualization, and web dev — entirely self-taught and peer-driven, no live instruction. Deployed club website with Docker, Nginx, and GitHub Actions CI/CD on a cloud VM; actively learning open source contribution practices.'
     },
     {
       id: "exp-2",
@@ -152,7 +152,7 @@ export const defaultCMSData: CMSData = {
       date: '2023 - 2027',
       title: 'Bachelor of Technology in Information Technology (Final Year)',
       institution: 'Government College of Engineering, Erode (Anna University)',
-      description: 'CGPA: 8+ (Till Date). Core Coursework: Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, Object-Oriented Programming.'
+      description: 'CGPA: 7.67 (Till Date). Core Coursework: Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, Object-Oriented Programming.'
     }
   ],
   contact: {

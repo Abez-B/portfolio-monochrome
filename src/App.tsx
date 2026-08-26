@@ -11,12 +11,12 @@ import LiquidEther from './components/LiquidEther';
 import { ThemeContext } from './context/ThemeContext';
 import { useCMS } from './cms/CMSContext';
 
-const Hero = lazy(() => import('./components/Hero/Hero'));
-const About = lazy(() => import('./components/About/About'));
+import Hero from './components/Hero/Hero';
+import About from './components/About/About';
+import Contact from './components/Contact/Contact';
 const Projects = lazy(() => import('./components/Projects/Projects'));
 const Skills = lazy(() => import('./components/Skills/Skills'));
 const Experience = lazy(() => import('./components/Experience/Experience'));
-const Contact = lazy(() => import('./components/Contact/Contact'));
 const AdminPanel = lazy(() => import('./cms/AdminPanel'));
 
 // ScrollToTop on route change
@@ -113,7 +113,7 @@ const MainPortfolio: React.FC = () => {
       />
 
       <main className="pt-20 pb-8 relative z-10 flex-1 space-y-6 md:space-y-8">
-        <Suspense fallback={<div className="flex justify-center items-center h-64 text-gray-500 font-mono text-sm animate-pulse">Loading...</div>}>
+        <Suspense fallback={<div className="flex justify-center items-center h-64"><div className="w-6 h-6 border-2 border-gray-300 border-t-gray-600 dark:border-gray-600 dark:border-t-gray-300 rounded-full animate-spin" /></div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<About />} />
@@ -134,7 +134,7 @@ const MainPortfolio: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Suspense fallback={<div className="flex justify-center items-center h-screen bg-black text-white font-mono text-sm animate-pulse">Initializing...</div>}>
+    <Suspense fallback={<div className="flex justify-center items-center h-screen bg-white dark:bg-black"><div className="w-8 h-8 border-2 border-gray-300 border-t-black dark:border-gray-700 dark:border-t-white rounded-full animate-spin" /></div>}>
       <Routes>
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/*" element={<MainPortfolio />} />

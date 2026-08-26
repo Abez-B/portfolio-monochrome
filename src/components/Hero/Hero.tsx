@@ -43,17 +43,17 @@ const Hero: React.FC = () => {
 
           <TypingText
             text={`Hi, I'm ${hero.name.split(' ')[0]}`}
-            className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-3 tracking-tight font-display"
+            className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-3 tracking-tight font-display text-balance"
           />
 
           <TypingText
             text={hero.title}
             as="h2"
-            className="text-base sm:text-xl md:text-2xl font-bold leading-relaxed mb-4 text-gray-700 dark:text-gray-300 font-mono"
+            className="text-base sm:text-xl md:text-2xl font-bold leading-relaxed mb-4 text-gray-700 dark:text-gray-300 font-mono text-balance"
           />
 
           <motion.p
-            className="text-gray-600 dark:text-gray-400 text-sm sm:text-lg md:text-xl mb-8 max-w-xl mx-auto leading-relaxed"
+            className="text-gray-600 dark:text-gray-400 text-sm sm:text-lg md:text-xl mb-8 max-w-xl mx-auto leading-relaxed text-balance"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.2 }}

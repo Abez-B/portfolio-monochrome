@@ -177,7 +177,7 @@ const Contact: React.FC = () => {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold mb-3">Get in Touch</h2>
-          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-xl mx-auto text-balance">
             Scan any QR code or click a link to connect across platforms directly.
           </p>
         </div>
@@ -241,7 +241,7 @@ const Contact: React.FC = () => {
         <div className="max-w-2xl mx-auto glass-card p-6 sm:p-8 shadow-xl">
           <div className="text-center mb-6">
             <h3 className="text-xl sm:text-2xl font-bold mb-1.5">Send a Direct Message</h3>
-            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-balance">
               Prefer email? Drop your message below and I'll respond as soon as possible.
             </p>
           </div>

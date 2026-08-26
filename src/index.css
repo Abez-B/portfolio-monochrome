@@ -2,26 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Modern Tech Grotesk Font System ──────────────────────────── */
+/* ── Font System: Outfit (Headings) + Plus Jakarta Sans (Body) ── */
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
-  background-color: #000000;
 }
 
 body {
   margin: 0;
-  font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   letter-spacing: -0.01em;
-  background-color: #000000;
 }
 
 h1, h2, h3, h4, h5, h6, .font-display {
-  font-family: 'Space Grotesk', sans-serif;
-  letter-spacing: -0.03em;
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.02em;
 }
 
 code, .font-mono, pre {
@@ -110,4 +108,15 @@ code, .font-mono, pre {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s infinite ease-in-out;
+}
+
+/* ── Responsive text utilities ──────────────────────────────── */
+.text-balance {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+section {
+  overflow-x: clip;
 }

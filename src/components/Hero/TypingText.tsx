@@ -31,6 +31,7 @@ const TypingText: React.FC<TypingTextProps> = ({ text, className, as = 'h1' }) =
   return (
     <MotionTag
       className={className}
+      style={{ overflowWrap: 'break-word', wordBreak: 'break-word' }}
       variants={textVariants}
       initial="hidden"
       animate="visible"

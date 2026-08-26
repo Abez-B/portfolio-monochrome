@@ -93,7 +93,7 @@ const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
 
   const attempt = (e: React.FormEvent) => {
     e.preventDefault();
-    if (pw === 'REDACTED') {
+    if (pw === (process.env.REACT_APP_CMS_PASSWORD || 'REDACTED')) {
       sessionStorage.setItem('cms-authed', 'true');
       onLogin();
     } else {

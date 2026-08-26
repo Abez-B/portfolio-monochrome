@@ -18,7 +18,7 @@ const Skills: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-3">Technical Toolkit</h2>
-          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-xl mx-auto text-balance">
             Core engineering competencies spanning systems administration, networking, full-stack web, and DevOps.
           </p>
         </div>
