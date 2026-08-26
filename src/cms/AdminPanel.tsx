@@ -86,13 +86,27 @@ const Pill: React.FC<{ children: React.ReactNode; onClick: () => void; variant?:
 
 /* ─── Login Screen (Strictly Darkmode) ────────────────────────── */
 const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
+  const [pw, setPw] = useState('');
+  const [shake, setShake] = useState(false);
   const liquidColors = ['#000000', '#ffffff', '#ffffff', '#e8e8e8', '#d0d0d0', '#aaaaaa'];
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const attempt = (e: React.FormEvent) => {
     e.preventDefault();
-    sessionStorage.setItem('cms-authed', 'true');
-    onLogin();
+    const cmsPassword = process.env.REACT_APP_CMS_PASSWORD;
+    if (!cmsPassword) {
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+      return;
+    }
+    if (pw === cmsPassword) {
+      sessionStorage.setItem('cms-authed', 'true');
+      onLogin();
+    } else {
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+      setPw('');
+    }
   };
 
   return (
@@ -109,13 +123,21 @@ const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
       </div>
       <div className="relative z-10 w-full max-w-sm px-4">
         <form onSubmit={attempt}
-          className="glass-card p-8 text-white"
+          className={`glass-card p-8 text-white transition-transform ${shake ? 'animate-bounce' : ''}`}
         >
           <div className="text-center mb-8">
             <div className="text-4xl mb-3">⚙️</div>
             <h1 className="text-2xl font-bold tracking-tight">Portfolio CMS</h1>
-            <p className="text-sm text-white/50 mt-1">Click below to enter the CMS</p>
+            <p className="text-sm text-white/50 mt-1">Enter your password to continue</p>
           </div>
+          <input
+            type="password"
+            value={pw}
+            autoFocus
+            placeholder="Password"
+            onChange={(e) => setPw(e.target.value)}
+            className={inputCls + ' mb-4 text-center tracking-widest'}
+          />
           <button type="submit"
             className="w-full py-3 rounded-lg font-semibold text-sm tracking-wide transition-all duration-200 glass-btn text-white"
           >
