@@ -2,9 +2,11 @@ export interface HeroData {
   name: string;
   title: string;
   subtitle: string;
+  statusBadge?: string;
   ctaText: string;
   ctaTarget: string;
   resumeUrl?: string;
+  avatarUrl?: string;
 }
 
 export interface AboutSectionItem {

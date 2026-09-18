@@ -152,7 +152,7 @@ const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
 /* ─── Main Admin Panel (Strictly Darkmode) ────────────────────── */
 export const AdminPanel: React.FC = () => {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem('cms-authed') === 'true');
-  const { cmsData, updateCMS } = useCMS();
+  const { cmsData, updateCMS, resetCMS } = useCMS();
   const [local, setLocal] = useState<CMSData>(cmsData);
   const [tab, setTab] = useState<Tab>('hero');
   const [toast, setToast] = useState<{ msg: string; type: 'success' | 'info' } | null>(null);
@@ -172,6 +172,13 @@ export const AdminPanel: React.FC = () => {
   };
 
   const save = () => { updateCMS(local); showToast('Changes saved!'); };
+
+  const handleReset = () => {
+    if (window.confirm('Reset all CMS data to default values? Any unsaved edits will be overwritten.')) {
+      resetCMS();
+      showToast('Reset to default values', 'info');
+    }
+  };
 
   const exportJSON = () => {
     const blob = new Blob([JSON.stringify(local, null, 2)], { type: 'application/json' });
@@ -287,6 +294,11 @@ export const AdminPanel: React.FC = () => {
               <span>↑</span> Import JSON
             </button>
             <input type="file" accept=".json" ref={fileInputRef} className="hidden" onChange={importJSON} />
+            <button onClick={handleReset}
+              className="text-xs text-red-400/80 hover:text-red-300 flex items-center gap-2 transition-colors py-1"
+            >
+              <span>↺</span> Reset to Defaults
+            </button>
             <button onClick={() => navigate('/')}
               className="text-xs text-white/50 hover:text-white flex items-center gap-2 transition-colors py-1"
             >
@@ -319,15 +331,34 @@ export const AdminPanel: React.FC = () => {
 
               {/* ── HERO ── */}
               {tab === 'hero' && (
-                <div className="glass-card p-4 sm:p-6">
+                <div className="glass-card p-4 sm:p-6 space-y-2">
                   {field('hero', 'name', 'Full Name')}
                   {field('hero', 'title', 'Job Title / Heading')}
                   {field('hero', 'subtitle', 'Subtitle / Description', true, 3)}
+                  {field('hero', 'statusBadge', 'Status Badge Text (e.g. Available for Systems & Open Source)')}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {field('hero', 'ctaText', 'CTA Button Text')}
                     {field('hero', 'ctaTarget', 'CTA Scroll Target ID')}
                   </div>
                   {field('hero', 'resumeUrl', 'Resume URL (Optional)')}
+                  <div>
+                    <Field
+                      label="Profile Avatar URL (Optional)"
+                      value={local.hero.avatarUrl || ''}
+                      placeholder="Leave blank for default profile picture"
+                      onChange={(v) => upSection('hero', 'avatarUrl', convertDriveLink(v))}
+                    />
+                    {local.hero.avatarUrl && (
+                      <div className="mt-2 flex items-center gap-3 mb-4">
+                        <img
+                          src={local.hero.avatarUrl}
+                          alt="Avatar preview"
+                          className="w-16 h-16 rounded-full object-cover ring-2 ring-white/20"
+                        />
+                        <span className="text-xs text-white/50">Avatar preview</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
 

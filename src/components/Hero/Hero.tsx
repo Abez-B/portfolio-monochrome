@@ -22,20 +22,24 @@ const Hero: React.FC = () => {
         <div className="glass-card p-6 sm:p-12 shadow-2xl relative overflow-hidden border border-black/10 dark:border-white/15">
           
           {/* Status Indicator Badge (Pure CSS pulse dot, zero emojis) */}
-          <motion.div 
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-semibold glass-tag mb-6 shadow-sm"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse-glow" />
-            <span className="text-gray-700 dark:text-gray-300 font-mono tracking-tight text-[11px] uppercase">Available for Systems & Open Source</span>
-          </motion.div>
+          {(hero.statusBadge !== '' && hero.statusBadge !== undefined ? hero.statusBadge : 'Available for Systems & Open Source') && (
+            <motion.div 
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-semibold glass-tag mb-6 shadow-sm"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse-glow" />
+              <span className="text-gray-700 dark:text-gray-300 font-mono tracking-tight text-[11px] uppercase">
+                {hero.statusBadge || 'Available for Systems & Open Source'}
+              </span>
+            </motion.div>
+          )}
 
           {/* Profile Avatar */}
           <motion.img
-            src={profilePicture}
-            alt="Bharath Kumar P"
+            src={hero.avatarUrl || profilePicture}
+            alt={hero.name}
             className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-full mx-auto mb-6 object-cover ring-4 ring-black/10 dark:ring-white/20 shadow-2xl"
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 300 }}

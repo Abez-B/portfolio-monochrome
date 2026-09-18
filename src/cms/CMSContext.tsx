@@ -12,7 +12,7 @@ const CMSContext = createContext<CMSContextType | undefined>(undefined);
 
 export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cmsData, setCmsData] = useState<CMSData>(() => {
-    const DATA_VERSION = 'v4_remove_personal_site';
+    const DATA_VERSION = 'v5_exact_frontend_parity';
     try {
       const currentVer = localStorage.getItem('portfolio-cms-version');
       if (currentVer !== DATA_VERSION) {

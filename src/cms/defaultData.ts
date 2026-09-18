@@ -7,6 +7,7 @@ export const defaultCMSData: CMSData = {
     name: 'Bharath Kumar P',
     title: 'Final Year IT Student | Systems & Network Engineer',
     subtitle: 'Systems & Network Engineer | Full-Stack Developer — Linux, KVM/QEMU, Docker, CI/CD & Open Source.',
+    statusBadge: 'Available for Systems & Open Source',
     ctaText: 'Explore My Work',
     ctaTarget: 'projects',
     resumeUrl: 'https://drive.google.com/file/d/1MwlG95bm4T963YPAS6rVrX8gYdeTDHah/view?usp=sharing',
@@ -177,12 +178,6 @@ export const defaultCMSData: CMSData = {
         url: 'https://matrix.to/#/@bharathjp02:matrix.org'
       },
       {
-        id: 'contact-instagram',
-        title: 'Instagram',
-        value: '@abhramzb',
-        url: 'https://www.instagram.com/abhramzb'
-      },
-      {
         id: 'contact-telegram',
         title: 'Telegram',
         value: '@bharathjp02',
@@ -198,7 +193,6 @@ export const defaultCMSData: CMSData = {
       { label: 'Website', url: 'https://bharath.is-cool.dev' },
       { label: 'Mastodon', url: 'https://mastodon.social/@abhrams' },
       { label: 'Matrix', url: 'https://matrix.to/#/@bharathjp02:matrix.org' },
-      { label: 'Instagram', url: 'https://www.instagram.com/abhramzb' },
       { label: 'Telegram', url: 'https://t.me/bharathjp02' }
     ]
   },

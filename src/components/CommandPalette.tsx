@@ -151,31 +151,20 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
         onSelect: () => { navigate('/admin'); onClose(); },
       },
 
-      // Social / Links
-      {
-        id: 'social-github',
-        title: 'GitHub Profile',
-        category: 'Social & Projects',
-        subtitle: 'github.com/Abez-B',
+      // Dynamic Social & Projects from CMS
+      ...(cmsData.footer.socialLinks || []).map((link, idx) => ({
+        id: `social-link-${idx}`,
+        title: `${link.label} Profile`,
+        category: 'Social & Projects' as const,
+        subtitle: link.url.replace(/^https?:\/\//, ''),
         icon: <ExternalLink className="w-4 h-4" />,
-        onSelect: () => { window.open('https://github.com/Abez-B', '_blank', 'noopener,noreferrer'); onClose(); },
-      },
-      {
-        id: 'social-linkedin',
-        title: 'LinkedIn Profile',
-        category: 'Social & Projects',
-        subtitle: cmsData.contact.linkedinHandle,
-        icon: <ExternalLink className="w-4 h-4" />,
-        onSelect: () => { window.open(cmsData.contact.linkedinUrl, '_blank', 'noopener,noreferrer'); onClose(); },
-      },
-      {
-        id: 'social-fossgcee',
-        title: 'FOSS GCEE Website',
-        category: 'Social & Projects',
-        subtitle: 'fossgcee.vercel.app',
-        icon: <ExternalLink className="w-4 h-4" />,
-        onSelect: () => { window.open('https://fossgcee.vercel.app', '_blank', 'noopener,noreferrer'); onClose(); },
-      },
+        onSelect: () => {
+          if (link.url && link.url !== '#') {
+            window.open(link.url, '_blank', 'noopener,noreferrer');
+          }
+          onClose();
+        },
+      })),
     ];
 
     return list;
