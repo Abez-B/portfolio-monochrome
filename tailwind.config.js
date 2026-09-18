@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-        display: ['Outfit', 'Plus Jakarta Sans', 'sans-serif'],
-        mono: ['Space Mono', 'Consolas', 'monospace'],
+        sans: ['Geist', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        display: ['Geist', 'Inter', 'sans-serif'],
+        mono: ['Geist Mono', 'JetBrains Mono', 'Space Mono', 'Consolas', 'monospace'],
       },
       colors: {
         transparent: 'transparent',

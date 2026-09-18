@@ -7,6 +7,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FloatingActionIsland } from './components/FloatingActionIsland';
 import { FloatingAccessibilityButton } from './components/FloatingAccessibilityButton';
+import { CommandPalette } from './components/CommandPalette';
 import LiquidEther from './components/LiquidEther';
 import { ThemeContext } from './context/ThemeContext';
 import { useCMS } from './cms/CMSContext';
@@ -41,6 +42,7 @@ const HomePage: React.FC = () => {
 
 const MainPortfolio: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
+  const [paletteOpen, setPaletteOpen] = React.useState<boolean>(false);
   const { theme } = React.useContext(ThemeContext);
   const { cmsData } = useCMS();
   const navigate = useNavigate();
@@ -53,31 +55,36 @@ const MainPortfolio: React.FC = () => {
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const disableSimulation = isMobile || prefersReducedMotion;
 
   useEffect(() => {
     AOS.init({
       duration: 800,
       once: true,
-      disable: window.innerWidth < 768,
+      disable: window.innerWidth < 768 || prefersReducedMotion,
     });
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setPaletteOpen((prev) => !prev);
+      } else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
         e.preventDefault();
         navigate('/admin');
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [navigate]);
+  }, [navigate, prefersReducedMotion]);
 
   return (
     <div className="text-black dark:text-white font-sans transition-colors duration-300 min-h-screen relative z-0 flex flex-col justify-between">
       <ScrollToTop />
       
-      {/* Background Liquid Simulation (Disabled on mobile for performance) */}
+      {/* Background Liquid Simulation (Disabled on mobile & reduced-motion for performance/a11y) */}
       <div className="fixed inset-0 z-0 pointer-events-none bg-white dark:bg-black">
-        {!isMobile && (
+        {!disableSimulation && (
           <LiquidEther
             key={theme}
             mouseForce={18}
@@ -100,9 +107,19 @@ const MainPortfolio: React.FC = () => {
         <title>{cmsData.meta.siteTitle}</title>
         <meta name="description" content={cmsData.meta.metaDescription} />
         <meta name="keywords" content={cmsData.meta.keywords} />
+        <meta name="theme-color" content={theme === 'dark' ? '#000000' : '#ffffff'} />
+        
+        {/* OpenGraph */}
         <meta property="og:title" content={cmsData.meta.siteTitle} />
         <meta property="og:description" content={cmsData.meta.metaDescription} />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://bharath.is-cool.dev" />
+        <meta property="og:site_name" content="Bharath Kumar P Portfolio" />
+        
+        {/* Twitter Cards */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={cmsData.meta.siteTitle} />
+        <meta name="twitter:description" content={cmsData.meta.metaDescription} />
       </Helmet>
 
       <Header 
@@ -110,6 +127,7 @@ const MainPortfolio: React.FC = () => {
         toggleMobileMenu={toggleMobileMenu} 
         closeMobileMenu={closeMobileMenu}
         navLinks={cmsData.navLinks}
+        onOpenCommandPalette={() => setPaletteOpen(true)}
       />
 
       <main className="pt-20 pb-8 relative z-10 flex-1 space-y-6 md:space-y-8">
@@ -128,6 +146,7 @@ const MainPortfolio: React.FC = () => {
       <Footer />
       <FloatingActionIsland />
       <FloatingAccessibilityButton />
+      <CommandPalette isOpen={paletteOpen} onClose={() => setPaletteOpen(false)} />
     </div>
   );
 };

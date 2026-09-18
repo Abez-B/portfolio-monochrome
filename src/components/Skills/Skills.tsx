@@ -17,7 +17,7 @@ const Skills: React.FC = () => {
     <section id="skills" className="text-black dark:text-white py-6 md:py-8 px-4 relative z-10">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-3">Technical Toolkit</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 font-display">Technical Toolkit</h2>
           <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-xl mx-auto text-balance">
             Core engineering competencies spanning systems administration, networking, full-stack web, and DevOps.
           </p>
@@ -27,26 +27,26 @@ const Skills: React.FC = () => {
           {cmsData.skillCategories.map((category) => (
             <div
               key={category.id}
-              className="glass-card p-5 sm:p-7 shadow-xl border border-white/20 dark:border-white/10 hover:border-white/30 transition-all duration-300 flex flex-col"
+              className="glass-card p-5 sm:p-7 shadow-xl border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/25 hover:scale-[1.01] transition-all duration-300 flex flex-col"
             >
-              <div className="flex items-center gap-3 border-b border-white/10 pb-3 mb-4">
+              <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-3.5 mb-4">
                 <div className="p-2.5 rounded-xl glass-tag">
                   {getCategoryIcon(category.title)}
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold tracking-tight">{category.title}</h3>
-                  <span className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-widest font-semibold">
+                  <h3 className="text-lg sm:text-xl font-bold tracking-tight font-display">{category.title}</h3>
+                  <span className="text-[10px] font-mono text-gray-500 dark:text-gray-400 uppercase tracking-widest font-semibold">
                     {category.skills.length} Competencies
                   </span>
                 </div>
               </div>
 
               {/* Compact, elegant glass pills layout */}
-              <div className="flex flex-wrap gap-2.5 mt-auto">
+              <div className="flex flex-wrap gap-2 mt-auto">
                 {category.skills.map((skill, sIndex) => (
                   <span
                     key={sIndex}
-                    className="glass-tag px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold tracking-tight transition-all hover:scale-105 hover:border-white/40 cursor-default"
+                    className="glass-tag px-3 py-1.5 rounded-xl text-xs sm:text-sm font-mono font-medium tracking-tight transition-all hover:scale-105 cursor-default"
                   >
                     {skill.name}
                   </span>

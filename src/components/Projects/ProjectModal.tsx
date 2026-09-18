@@ -18,17 +18,24 @@ interface ProjectModalProps {
 }
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  // Lock body scroll while modal is open to keep focus dead-centered
+  // Lock body scroll and listen for Escape key while modal is open
   useEffect(() => {
     if (project) {
       document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          onClose();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
     } else {
       document.body.style.overflow = '';
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [project]);
+  }, [project, onClose]);
 
   return ReactDOM.createPortal(
     <AnimatePresence>
@@ -40,9 +47,12 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="project-modal-title"
         >
           <motion.div
-            className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto cursor-default glass-card p-6 sm:p-8 rounded-2xl shadow-2xl border border-white/20 dark:border-white/15 bg-white/90 dark:bg-black/90 backdrop-blur-3xl text-black dark:text-white"
+            className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto cursor-default glass-card p-6 sm:p-8 rounded-2xl shadow-2xl border border-black/10 dark:border-white/15 bg-white/95 dark:bg-black/95 backdrop-blur-3xl text-black dark:text-white"
             initial={{ scale: 0.92, opacity: 0, y: 15 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.92, opacity: 0, y: 15 }}
@@ -60,10 +70,10 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
               </svg>
             </button>
 
-            <span className="text-[11px] font-extrabold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-1.5 block">
+            <span className="text-[11px] font-mono font-extrabold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-1.5 block">
               {project.category}
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4 pr-10 break-words">
+            <h2 id="project-modal-title" className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4 pr-10 break-words font-display">
               {project.title}
             </h2>
 

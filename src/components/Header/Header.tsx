@@ -10,9 +10,10 @@ interface HeaderProps {
   toggleMobileMenu: () => void;
   closeMobileMenu: () => void;
   navLinks: Array<{ name: string; to: string }>;
+  onOpenCommandPalette?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, closeMobileMenu, navLinks }) => {
+const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, closeMobileMenu, navLinks, onOpenCommandPalette }) => {
   const { cmsData } = useCMS();
   const [scrolled, setScrolled] = useState<boolean>(false);
   const navRef = useRef<HTMLDivElement>(null);
@@ -112,8 +113,18 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
             })}
           </ul>
 
-          {/* Call to Action & Theme Toggle */}
-          <div className="hidden md:flex items-center gap-3 shrink-0">
+          {/* Call to Action & Theme Toggle & Command Palette */}
+          <div className="hidden md:flex items-center gap-2.5 shrink-0">
+            {onOpenCommandPalette && (
+              <button
+                onClick={onOpenCommandPalette}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-[11px] font-semibold text-gray-600 dark:text-gray-400 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:text-black dark:hover:text-white hover:border-black/20 dark:hover:border-white/20 transition-all hover:scale-105"
+                title="Command Palette (Ctrl+K / ⌘K)"
+                aria-label="Open Command Palette"
+              >
+                <span>⌘K</span>
+              </button>
+            )}
             <ThemeToggle />
             {cmsData.hero.resumeUrl && (
               <a
@@ -182,7 +193,18 @@ const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, toggleMobileMenu, close
                   </li>
                 );
               })}
-              <li className="pt-2 border-t border-black/10 dark:border-white/10 mt-1">
+              {onOpenCommandPalette && (
+                <li className="pt-2 border-t border-black/10 dark:border-white/10 mt-1">
+                  <button
+                    onClick={() => { closeMobileMenu(); onOpenCommandPalette(); }}
+                    className="w-full flex items-center justify-between font-mono text-xs py-2 px-3 rounded-lg text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                  >
+                    <span>⌘ Command Palette</span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-black/10 dark:bg-white/10 font-bold">Ctrl+K</span>
+                  </button>
+                </li>
+              )}
+              <li className="pt-1">
                 <NavLink
                   to="/admin"
                   onClick={closeMobileMenu}

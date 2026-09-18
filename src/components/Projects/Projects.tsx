@@ -29,16 +29,21 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="text-black dark:text-white py-6 md:py-8 px-4 relative z-10">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12">My Projects</h2>
-        <div className="flex justify-center mb-6 sm:mb-8 flex-wrap gap-2">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 font-display">Featured Projects</h2>
+          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-xl mx-auto text-balance">
+            Open-source systems utilities, cross-platform applications, ML pipelines, and full-stack software.
+          </p>
+        </div>
+        <div className="flex justify-center mb-8 sm:mb-10 flex-wrap gap-2">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-4 py-1.5 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
                 filter === cat 
-                  ? 'bg-black text-white dark:bg-white dark:text-black' 
-                  : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
+                  ? 'bg-black text-white dark:bg-white dark:text-black font-bold shadow-md' 
+                  : 'glass-tag text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
               }`}
             >
               {cat}

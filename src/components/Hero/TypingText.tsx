@@ -28,18 +28,26 @@ const TypingText: React.FC<TypingTextProps> = ({ text, className, as = 'h1' }) =
 
   const MotionTag = motion[as] as typeof motion.h1;
 
+  const words = text.split(' ');
+
   return (
     <MotionTag
       className={className}
-      style={{ overflowWrap: 'break-word', wordBreak: 'break-word' }}
       variants={textVariants}
       initial="hidden"
       animate="visible"
     >
-      {text.split('').map((char, index) => (
-        <motion.span key={index} variants={letterVariants}>
-          {char}
-        </motion.span>
+      {words.map((word, wIndex) => (
+        <span key={wIndex} className="inline-block whitespace-nowrap">
+          {word.split('').map((char, cIndex) => (
+            <motion.span key={cIndex} variants={letterVariants} className="inline-block">
+              {char}
+            </motion.span>
+          ))}
+          {wIndex < words.length - 1 && (
+            <span className="inline-block">&nbsp;</span>
+          )}
+        </span>
       ))}
     </MotionTag>
   );

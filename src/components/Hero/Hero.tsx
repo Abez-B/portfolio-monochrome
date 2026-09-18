@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
       transition={{ duration: 0.8 }}
     >
       <div className="text-center max-w-3xl mx-auto z-10 w-full">
-        <div className="glass-card p-6 sm:p-12 shadow-2xl relative overflow-hidden border border-white/20 dark:border-white/15">
+        <div className="glass-card p-6 sm:p-12 shadow-2xl relative overflow-hidden border border-black/10 dark:border-white/15">
           
           {/* Status Indicator Badge (Pure CSS pulse dot, zero emojis) */}
           <motion.div 
